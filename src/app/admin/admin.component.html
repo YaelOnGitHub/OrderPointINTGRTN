@@ -1,0 +1,12 @@
+<div class="content" *ngIf="loadPage">
+    <!-- <app-header [impersonating]="impersonating"></app-header> -->
+    <app-main-header [typeUser]="'Admin'" [impersonating]="impersonating"></app-main-header>
+    <div class="main-content">
+       <div>
+          <!-- <app-side-bar></app-side-bar> -->
+          <div class="">
+             <router-outlet></router-outlet>
+          </div>
+       </div>
+    </div>
+ </div>

@@ -1,0 +1,176 @@
+<section class="page-section">
+    <div class="container">
+      <form [formGroup]="filterForm!" (keydown.enter)="$event.preventDefault()">
+        <div class="row">
+          <div class="col-12 div-center">
+            <div class="back">
+              <a routerLink="../">
+                {{ "common.back" | translate }}
+              </a>
+            </div>
+            <div class="clear" *ngIf="haveFilter">
+              <button class="btn btn-ti-outline" (click)="initialFilter()">
+                {{ "transferHistory.clearFilter" | translate }}
+              </button>
+            </div>
+          </div>
+          <div class="col-12 col-xl-3">
+            <div class="page-title">
+              <h3>{{ "transferHistory.mainTitle" | translate }}</h3>
+              <p>
+                {{ totalItems ? totalItems : "NO" }}
+                {{ "transferHistory.result" | translate }}
+              </p>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="show-order">
+              <div class="o_title">
+                {{ "transferHistory.filter.label" | translate }} :
+              </div>
+  
+              <div
+                class="group active"
+                [class.active]="filterForm?.value.month === '3'"
+              >
+                <!-- <input type="radio" name="month_select"> -->
+                <label for="month_select" (click)="filterhistory('3')"
+                  >3 {{ "transferHistory.filter.month" | translate }}</label
+                >
+              </div>
+              <div class="group" [class.active]="filterForm?.value.month === '6'">
+                <!-- <input type="radio" name="month_select"> -->
+                <label for="month_select active" (click)="filterhistory('6')"
+                  >6 {{ "transferHistory.filter.month" | translate }}</label
+                >
+              </div>
+              <div
+                class="group"
+                [class.active]="filterForm?.value.month === '12'"
+              >
+                <!-- <input type="radio" name="month_select"> -->
+                <label for="month_select" (click)="filterhistory('12')"
+                  >12 {{ "transferHistory.filter.month" | translate }}</label
+                >
+              </div>
+              <input
+                class="custom-date"
+                formControlName="selectDate"
+                [(ngModel)]="selectedDate"
+                (datesUpdated)="changeDate($event)"
+                ngxDaterangepickerMd
+                [linkedCalendars]="true"
+                [placeholder]="'transferHistory.filter.customDate' | translate"
+              />
+              <!-- Custom Date -->
+              <!-- </div> -->
+            </div>
+          </div>
+          <div class="col-xl-3 filter">
+            <div class="inner">
+                <div class="title" ngbDropdown style="width: 50%;">
+                    <div class="select-dropdown" ngbDropdownToggle>
+                        <span>{{ selectedType ? selectedType.text : ('models.filter.options' | translate)[0]  }}</span>
+                    </div>
+                    <div class="search-details">
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="item-menu"
+                        style="transform: translate(80px, -186px)!important;">
+                        <button ngbDropdownItem class="item-num" *ngFor="let prod of transferType"
+                            (click)="selectOrderType(prod) ">
+                            <span>{{prod.text}}</span>
+                        </button>
+                        </div>
+                      </div>
+                </div>
+              
+  
+              <!-- <button class="btn btn-ti-primary" (click)="filterOpen()">
+                <img [src]="'assets/img/cart/filter.png'" alt="Filter Icon" />
+                {{ "transferHistory.filter.title" | translate }}
+              </button> -->
+            </div>
+          </div>
+          <!-- <div class="col-12 col-xl-5">
+                 <div class="page-title">
+                     <h3>ORDER HISTORY</h3>
+                 </div>
+                 </div>
+                 <div class="col-12 col-xl-5">
+                 <div class="page-title">
+                     <h3>ORDER HISTORY</h3>
+                 </div>
+                 </div> -->
+        </div>
+      </form>
+      <div
+        class="row order-item"
+        *ngFor="
+          let item of orders | paginate: { 
+              itemsPerPage: this.pageRequest.take,
+              currentPage: this.pageRequest.page,
+              totalItems: totalItems}">
+  
+        <div class="col-lg-1"></div>
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="row order-details">
+              <div class="item">
+                <span class="main_title"
+                  >{{ ("transferHistory.card.headers" | translate)[0] }} :</span
+                >
+                <span class="main_title"> {{ item.transferBatchId ? item.transferBatchId : "NA" }} </span>
+              </div>
+              <div class="item">
+                <span class="tio_title">
+                  {{ ("transferHistory.card.headers" | translate)[1] }} :</span
+                >
+                <span class="tio_dec">
+                  
+                  {{
+                    item.transferDate ? (item.transferDate | date: "mediumDate") : "-"
+                  }}
+                </span>
+              </div>
+              <div class="item">
+                <span class="tio_title">
+                  {{ ("transferHistory.card.headers" | translate)[2] }} :</span
+                >
+                <span class="tio_dec">
+                    {{ item.transferType ?  item.transferType : "-" }}
+                </span>
+              </div>
+              <div class="item">
+                <span class="tio_title">
+                  {{ ("transferHistory.card.headers" | translate)[3] }} :</span
+                >
+                <span class="tio_dec"> 
+                  {{ item.products.length ? item.products.length : "" }}
+                </span>
+              </div>
+              <!-- <div class="item">
+                <span class="tio_title">
+                  {{ ("transferHistory.card.headers" | translate)[4] }} :</span
+                >
+                <span class="tio_dec">
+                  {{ item.status ? item.status : "-" }}
+                </span>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2" style="position: relative;">
+          <div class="btn-list" style="position: relative; top: 50%; transform: translateY(-50%);">
+            <button class="btn btn-ti-primary" (click)="viewOrder(item.transferBatchId)">
+              {{ ("transferHistory.card.actionBtns" | translate)[0] }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <pagination-controls
+        (pageChange)="getAllTransferHistories(this.filterForm?.value,(this.pageRequest.page = $event))"
+        previousLabel= "{{ 'paginationButtons.previous' | translate }}"
+        nextLabel= "{{ 'paginationButtons.next' | translate }}"
+        *ngIf="orders.length > 0 && !loading">
+      </pagination-controls>
+    </div>
+  </section>

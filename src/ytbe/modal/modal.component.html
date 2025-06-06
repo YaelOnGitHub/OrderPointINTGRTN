@@ -1,0 +1,19 @@
+<div class="y-modal-container y-modal-content" [ngStyle]="{'height.px': height, 'width.px': width, 'minWidth.px': minWidth}">
+    <!-- Default toolbar (if custom toolbar not specified) -->
+    <ytbe-titlebar titlebarType="modal" #titlebar *ngIf="!titlebarContent && title" [title]="title">
+      <ytbe-toolbar>
+        <button ytbeButton title="Close" icon="close" [buttonType]="buttonType.flat" (click)="actionClick({name:'close',closes:true})" *ngIf="modalRef!.closeStatus !== 'hidden'"
+       [disabled]="modalRef!.closeStatus === 'disabled'"></button>
+      </ytbe-toolbar>
+    </ytbe-titlebar>
+    <ng-content select="ytbe-titlebar"></ng-content> <!-- Use injected titlebar if defined -->
+
+    <!-- Need to get a reference to this-->
+    <div class="y-content"><ng-content></ng-content></div>
+
+    <!-- Here is where new toolbar control will go -->
+    <ytbe-modal-actions *ngIf="actions && actions.length">
+      <button *ngFor="let action of actions" (click)="actionClick(action)" [ytbeButton]="action.text! || action.name!" [primary]="action.primary!"></button>
+    </ytbe-modal-actions>
+</div>
+<ytbe-overlay></ytbe-overlay>

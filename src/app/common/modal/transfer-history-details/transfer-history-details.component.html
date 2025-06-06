@@ -1,0 +1,68 @@
+<div>
+    <div class="modal-header">
+        <span class="close-icon" aria-label="Close" (click)="onCloseModal()" data-toggle="tooltip" data-placement="top"
+            title="Close">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                    fill="#555555" />
+            </svg>
+        </span>
+        <div class="order-details-cell">
+            <div class="left-side">
+                <div class="orderID">{{ ('models.viewTransferHistory.headers' | translate)[0] }}: <span>{{ transferDetails.transferBatchId }} </span>
+                </div>
+                <div class="orderTYPE">{{ ('models.viewTransferHistory.headers' | translate)[1] }}: <span>{{
+                        transferDetails?.transferType ? transferDetails?.transferType : '-' }}</span></div>
+            </div>
+
+            <div class="right-side">
+                <table class="order-head">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span>{{ ('models.viewTransferHistory.headers' | translate)[2] }}:</span>
+                            </td>
+                            <td>
+                                <span> {{ transferDetails?.transferDate ? (transferDetails?.transferDate | date : 'MM/dd/YYYY') :
+                                    '-' }}</span>
+                            </td>
+                        </tr>
+                        <tr *ngIf="transferDetails?.transferType == 'REP-TO-REP'">
+                            <td class="text-end">
+                                <span>{{ ('models.viewTransferHistory.headers' | translate)[3] }}:</span>
+                            </td>
+                            <td>
+                                <span> {{ transferDetails?.transferToName ? transferDetails?.transferToName: '-' }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="order-body">
+            
+            <div class="product-details">
+                <div class="count">
+                    {{ ('models.viewTransferHistory.totalItems' | translate) }}: {{ transferDetails?.products.length}}
+                </div>
+                <div class="product-box">
+                    <div class="item" *ngFor="let item of transferDetails?.products">
+                        <div class="item-img">
+                            <a [href]="item.previewUrl" target="_blank">
+                                <img [src]="item.previewUrl" alt="" [srcDefault]="'assets/img/home/Product_Default.svg'">
+                            </a>
+                        </div>
+                        <div class="item-details">
+                            <span>{{ item.productName }} </span>
+                            <span>Transfer Unit: {{ item.transferUnit }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>

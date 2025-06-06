@@ -1,0 +1,26 @@
+<section class="login-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="login-section">
+                    <div class="form-with-footer">
+                        <div class="box">
+                            <div *ngIf="!isError">{{ ('signInSSOPage.message' | translate) }}</div>
+                            <div *ngIf="isError">{{ ('signInSSOPage.error' | translate) }}</div>
+                        </div>
+                        <!-- Footer Links -->
+                        <div class="footer-bx">
+                            <a routerLink="" class="logo">
+                                <img [src]="'assets/img/Qpharma-logo-footer.png'" alt="Qpharma">
+                            </a>
+
+                            <div class="copyright"> 
+                                © QPharma Ti ORDERPOINT 2022
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

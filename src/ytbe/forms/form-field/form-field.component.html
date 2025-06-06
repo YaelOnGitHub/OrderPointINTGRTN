@@ -1,0 +1,6 @@
+<label *ngIf="useLabel && (label || name)" #labelRef>{{label || name}}<span *ngIf="required" class="y-form-required"></span></label>
+<i *ngIf="icon" class="icon-{{icon}}"></i>
+<!--Form fields without input refs are treated as composite fields.  Field acts as a wrapper with label and border only.-->
+<div [ngClass]="{'y-form-content':1,'y-form-control':!inputRef,'ng-invalid':feedback}"><ng-content></ng-content></div>
+<ytbe-form-feedback [fieldName]="name" [message]="feedback" [messages]="messages" [formControl]="inputRef!.formControlName!.control" *ngIf="feedback || (inputRef && inputRef.formControlName && inputRef.formControlName!.control!.errors &&
+(inputRef.formControlName!.touched || inputRef.formControlName!.dirty))"></ytbe-form-feedback>

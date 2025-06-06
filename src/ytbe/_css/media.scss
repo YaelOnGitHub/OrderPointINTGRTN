@@ -1,0 +1,62 @@
+$y-screen-small: 480px !default;
+$y-screen-medium: 768px !default;
+$y-screen-large: 992px !default;
+
+// Mobile Media queries
+// Based on desktop-first approach (design for desktop first and override as needed with media query)
+
+//Small screens - Ex: Smartphones
+@mixin ytbe-screen-small {
+  @media only screen and (max-width: $y-screen-small) {
+    @content;
+  }
+}
+//Medium screens - Ex: Tablets
+@mixin ytbe-screen-medium {
+  @media only screen and (max-width: $y-screen-medium) {
+    @content;
+  }
+}
+//Large screens - Ex: Large Tablets and Desktops
+@mixin ytbe-screen-large {
+  @media only screen and (max-width: $y-screen-large) {
+    @content;
+  }
+}
+
+// Media Common
+@mixin ytbe-common-media {
+  // Layouts and breakpoints
+  .y-layout-horizontal {
+    display: flex;
+
+    &.y-mb-small {
+      @include ytbe-screen-small {
+        flex-direction: column;
+      }
+    }
+
+    &.y-mb-medium {
+      @include ytbe-screen-medium {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .y-layout-vertical {
+    display: flex;
+    flex-direction: column;
+
+    &.y-mb-small {
+      @include ytbe-screen-small {
+        flex-direction: row;
+      }
+    }
+
+    &.y-mb-medium {
+      @include ytbe-screen-medium {
+        flex-direction: row;
+      }
+    }
+  }
+}

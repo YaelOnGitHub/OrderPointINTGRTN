@@ -1,0 +1,233 @@
+@import "variables";
+@import "mixins";
+.login-page {
+    // background: rgb(243, 102, 51);
+    // background: linear-gradient(90deg, rgba(243, 102, 51, 1) 30%, rgba(247, 225, 163, 1) 100%);
+    height: 100vh;
+    width: 100%;
+
+    .login-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 10px);
+        z-index: 9;
+        position: relative;
+        margin-top: 10px;
+        @media (max-width: 567px) {
+            display: inline;
+            .form-with-footer {
+                padding-top: 66px;
+            }
+        }
+
+        // Form Login
+        .form {
+            background: theme-var($--theme-surface);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+            border-radius: 25px;
+            padding: 30px;
+
+            width: 462px;
+            min-height: 456px;
+
+            @media (max-width: 567px) {
+                width: 100%;
+            }
+            .gsk-box {
+                margin: auto;
+                text-align: center;
+                margin-bottom: 28px;
+            }
+            .ti-box {
+                margin: auto;
+                text-align: center;
+                margin-bottom: 17px;
+            }
+            .label {
+                font-family: "Lato", sans-serif;
+                font-style: normal;
+                text-align: center;
+                h2 {
+                    font-weight: bold;
+                    font-size: 20px;
+                    line-height: 26px;
+                    // color: theme-var($--theme-secondary);
+                    color: theme-var($--theme-on-surface);
+                    transition: color $theme-transition-duration !important;
+                }
+                p {
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 20px;  
+                    color: #555555;
+                    margin-bottom: 36px;
+                }
+            }
+            .form-group {
+                position: relative;
+                input {
+                    background: theme-var($--theme-surface);
+                    border: 2px solid theme-var($--theme-input-border);
+                    box-sizing: border-box;
+                    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.1);
+                    border-radius: 22px;
+                    margin-bottom: 24px;
+                    padding: 9px 23px;
+                    transition: 0.1s ease-out;
+                    width: 100%;
+                    transition: 0.4s;
+                    outline: none;
+                    &:focus,
+                    &:active {
+                        border: 2px solid #edebe9;
+                        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+                    }
+                }
+            }
+
+            /* Bypass view encapsulation */
+            ::ng-deep {
+                .y-form-feedback {
+                    position: relative;
+                    margin-top: -22px;
+                }
+            }
+
+            .submit {
+                background: linear-gradient(135deg, theme-var($--theme-input-border) 39.08%, #847979 100%);
+                border: 1px solid #000000;
+                box-sizing: border-box;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 100px;
+
+                font-family: "Lato", sans-serif;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 20px;
+                text-align: center;
+                // color: #ffffff;
+                color: theme-var($--theme-on-primary);
+                transition: color $theme-transition-duration !important;
+                height: 40px;
+                width: 100%;
+            }
+            .forget-pass {
+                margin-top: 24px;
+                a {
+                    font-family: "Lato", sans-serif;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: #456386;
+                    margin-top: 24px;
+                    text-decoration: none;
+                    transition: 0.4s;
+                    &:hover {
+                        color: theme-var($--theme-secondary);
+                    }
+                }
+            }
+        }
+        // Form Login End
+
+        // Footer links
+        .footer-bx {
+            margin: auto;
+            text-align: center;
+
+            a.logo img {
+                margin: 35px auto 6px;
+                cursor: pointer;
+            }
+            .copyright {
+                font-family: "Mulish", sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 20px;
+                text-align: center;
+                letter-spacing: 0.3px;
+                color: theme-var($--theme-on-secondary);
+            }
+        }
+    }
+}
+
+// .forground {
+//     position: absolute;
+//     width: 100%;
+//     top: 0;
+// }
+// .left-bg {
+//     background-image: url(../../../../assets/img/dots-left.png);
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     min-height: 100vh;
+//     position: absolute;
+//     width: 80%;
+//     left: 0;
+//     @media (max-width: 768px) {
+//         display: none;
+//     }
+// }
+
+// .right-bg {
+//     background-image: url(../../../../assets/img/dots-right.png);
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     min-height: 100vh;
+//     position: absolute;
+//     width: 80%;
+//     right: 0;
+
+//     @media (max-width: 768px) {
+//         display: none;
+//     }
+// }
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+label {
+    position: absolute;
+    left: 0;
+    top: 34%;
+    transform: translateY(-50%);
+    background-color: theme-var($--theme-surface);
+    padding: 0 0.3rem;
+    margin: 0 0.5rem;
+    transition: 0.1s ease-out;
+    transform-origin: left top;
+    pointer-events: none;
+    color: theme-var($--theme-on-surface);
+    font-family: "Lato", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+input:focus {
+    border-color: theme-var($--theme-input-border);
+}
+input:focus + label {
+    color: theme-var($--theme-input-border);
+    top: 0;
+    transform: translateY(-50%) scale(0.9);
+    font-size: 12px;
+    line-height: 14px;
+}
+input:not(:placeholder-shown) + label {
+    top: 0;
+    transform: translateY(-50%) scale(0.9);
+}

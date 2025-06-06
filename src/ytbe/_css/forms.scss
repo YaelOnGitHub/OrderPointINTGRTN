@@ -1,0 +1,236 @@
+@import 'theming';
+
+//Form Variables
+$y-form-control-padding: $y-icon-size/2 !default;
+$y-form-control-radius: 3px !default;
+$y-form-control-spacing: 6px !default;
+
+//Forms Theme
+@mixin ytbe-common-forms {
+  select,
+  textarea,
+  input,
+  .y-form-control {
+    padding: $y-form-control-padding;
+    border-radius: $y-form-control-radius;
+    font-size: 1em;
+  }
+  //Componsite controls (Ex: Credit Card) do not use top & bottom padding
+  .y-form-control {
+    padding: 0 $y-form-control-padding;
+  }
+  //Text controls
+  select, textarea, input[type=text],
+  input[type=email],
+  input[type=url],
+  input[type=password],
+  .y-form-control {
+    height: auto;
+    line-height: normal;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1px solid; //Remove inset
+  }
+  //Form field wrappers and fields with icons
+  .y-form-field {
+    display: block;
+    position: relative;
+    margin-bottom: 1em;
+
+    label {
+      display: block;
+    }
+
+    @include ytbe-sel-icons {
+      position: absolute;
+      font-size: $y-icon-size;
+    }
+    //Input and text areas should fill width
+    & > .y-form-content > input, & > textarea {
+      width: 100%;
+    }
+
+    select,
+    textarea,
+    input[type=text],
+    input[type=email],
+    input[type=url],
+    input[type=password] {
+      &.y-with-icon {
+        min-height: $y-icon-size*2; //Size textbox to be at least as tall as icon (including its padding)
+        text-indent: $y-icon-size+$y-icon-size/2;
+      }
+    }
+  }
+  //Form section
+  .y-form-section {
+    margin: 0 -5px 0 0;
+
+    & > .y-form-section,
+    & > .y-form-field {
+      flex: 1 1 auto;
+      padding: 0 5px 0 0;
+    }
+  }
+  //Validation
+  .y-form-feedback {
+    display: block;
+    margin: 0;
+    list-style: none;
+
+    &.y-form-feedback-above {
+      margin-bottom: 1em;
+    }
+  }
+  //Required field indicator
+  .y-form-required::before {
+    content: '*';
+    padding-left: 5px;
+  }
+  /* Toggle switch */
+  .y-switch-toggle {
+    padding: 0;
+    border-radius: $y-form-control-radius;
+
+    label {
+      z-index: 1;
+      position: absolute;
+      display: block;
+      opacity: 0;
+      left: 0;
+      top: 0;
+      line-height: $y-icon-size;
+      padding: $y-form-control-spacing/2 $y-form-control-spacing;
+      border-radius: $y-form-control-radius;
+
+      &::before {
+        z-index: 2;
+        position: absolute;
+        content: ' ';
+        border-radius: $y-form-control-radius;
+        display: block;
+        width: $y-icon-size;
+        height: $y-icon-size;
+        transition: 0.4s;
+      }
+
+      &:last-child {
+        padding-left: $y-icon-size + $y-form-control-spacing;
+
+        &::before {
+          transform: translateX(100%);
+          left: $y-form-control-spacing/2;
+        }
+      }
+
+      &:first-child {
+        padding-right: $y-icon-size + $y-form-control-spacing;
+
+        &::before {
+          transform: translateX(-100%);
+          right: $y-form-control-spacing/2;
+        }
+      }
+
+      &.y-sel {
+        position: relative;
+        opacity: 1;
+        z-index: 0;
+
+        &::before {
+          transform: translateX(0px);
+        }
+      }
+    }
+  }
+}
+@mixin ytbe-theme-forms($theme) {
+  $primary: map-get($theme, primary);
+  $secondary: map-get($theme, secondary);
+  $status-critical: map-get($theme, status-critical);
+
+  //Text controls
+  select,
+  textarea,
+  input[type=text],
+  input[type=email],
+  input[type=url],
+  input[type=password],
+  .y-form-control {
+    color: ytbe-color($secondary);
+    //Validation - Outline controls when invalid
+    &.ng-invalid {
+      border-color: $status-critical;
+    }
+
+    &, &.ng-untouched.ng-invalid {
+      border-color: ytbe-color($secondary, 200);
+    }
+
+    &[disabled] {
+      background-color: ytbe-color($secondary, 50);
+    }
+
+    &::placeholder {
+      color: ytbe-color($secondary, 300);
+    }
+  }
+  // Form field wrappers and fields with icons
+  .y-form-field {
+    @include ytbe-sel-icons {
+      color: ytbe-color($secondary);
+    }
+  }
+  //Switch
+  .y-switch {
+    position: relative;
+  }
+
+  .y-switch-default {
+    padding: $y-form-control-spacing/2;
+
+    label {
+      display: inline-block;
+      border-radius: $y-form-control-radius;
+      padding: $y-form-control-padding/2 $y-form-control-padding;
+
+      &.y-sel {
+        background-color: ytbe-color($primary);
+        color: ytbe-color($primary, default-contrast);
+      }
+    }
+  }
+  //Validation - Outline controls when invalid
+  .ng-invalid {
+    border-color: $status-critical;
+  }
+  //Validation Message
+  .y-form-feedback {
+    color: $status-critical;
+  }
+  //Required field indicator
+  .y-form-required::before {
+    color: $status-critical;
+  }
+
+  /* Style as toggle switch */
+  .y-switch-toggle {
+    label {
+      &:last-child {
+        background-color: ytbe-color($secondary, lighter);
+        color: ytbe-color($secondary);
+        &::before {
+          background-color: ytbe-color($secondary);
+        }
+      }
+
+      &:first-child {
+        background-color: ytbe-color($primary, accent);
+        color: ytbe-color($primary, accent-contrast);
+        &::before {
+          background-color: ytbe-color($primary, default-contrast);
+        }
+      }
+    }
+  }
+}

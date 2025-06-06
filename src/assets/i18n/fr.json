@@ -1,0 +1,509 @@
+{ 
+  "warningAddToCartModal": {
+  "title": "Warning",
+  "subTitle": "You cannot proceed with this action",
+  "warningMessageSuper" : "Veuillez noter que ce produit a une limite de durée de vie. Continuez uniquement si vous souhaitez poursuivre cette commande."
+},
+  "quantityError": "Taper seulement ",
+  "signInPage": {
+    "title": "S'IDENTIFIER",
+    "desc": "Veuillez vous connecter pour accéder à votre compte",
+    "formFields": [
+      {
+        "label": "Nom d'utilisateur",
+        "error": "Nom d'utilisateur est nécessaire"
+      },
+      {
+        "label": "Mot de passe",
+        "error": "Mot de passe requis"
+      }
+    ],
+    "actions": [
+      {
+        "title": "S'identifier"
+      },
+      {
+        "title": "Mot de passe oublié"
+      }
+    ],
+    "messages": {
+      "success": { "type": "Succès", "message": "Connexion réussie" },
+      "invalidLogin": {
+        "type": "Erreur",
+        "message": "Nom d'utilisateur / mot de passe incorrects"
+      }
+    }
+  },
+  "signInSSOPage": {
+    "message": "Connexion. Veuillez patienter...",
+    "error": "Une erreur s'est produite lors de la connexion. Veuillez réessayer ou contacter votre administrateur système."
+  },
+  "forgetPassword": {
+    "title": "MOT DE PASSE OUBLIÉ",
+    "desc": "Veuillez changer le mot de passe pour accéder à votre compte",
+    "formFields": [
+      {
+        "label": "Nom d'utilisateur",
+        "error": "Nom d'utilisateur est nécessaire"
+      },
+      {
+        "label": "nouveau mot de passe",
+        "error": "Mot de passe requis"
+      },
+      {
+        "label": "Confirmez le mot de passe",
+        "error": "Confirmer le mot de passe est requis",
+        "errorMatch": "Le mot de passe et le mot de passe de confirmation doivent correspondre."
+      }
+    ],
+    "actions": [
+      {
+        "title": "Soumettre"
+      },
+      {
+        "title": "S'identifier"
+      }
+    ]
+  },
+  "logOutPage": {
+    "message": "Vous venez de vous déconnecter de OrderPoint"
+  },
+  "termsPage": {
+    "title": "",
+    "desc": "",
+    "details": [
+      {
+        "title": "Termes Et Conditions",
+        "desc": [
+          "Veuillez lire attentivement ces termes et conditions avant d'utiliser ce site Web."
+        ]
+      },
+      {
+        "title": "NUTZUNGSBEDINGUNGEN",
+        "desc": [
+          "Les articles peuvent être placés sur notre liste de sélection en fonction d'une affectation au niveau du groupe (équipe de vente) et non sur une affectation au niveau individuel (John Smith)",
+          "Il est de ma responsabilité de m'assurer que j'ai suivi toutes les formations requises avant de commander des échantillons de médicaments sur ordonnance ou des articles promotionnels pour ces produits.",
+          "Je suis chargé de veiller à ce que mes interactions et discussions avec les clients soient conformes aux valeurs, aux pratiques policières et commerciales et aux procédures de GS.",
+          "Je ne commanderai que du matériel pour lequel j'ai terminé toutes les formations nécessitant une formation."
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "title": "Déclin"
+      },
+      {
+        "title": "J'accepte"
+      }
+    ]
+  },
+  "sideFilter": {
+    "newItemOnly": {
+      "title": "Nouveaux articles uniquement"
+    },
+    "selectRep": "Sélectionnez un représentant",
+    "selectTerritory": "Sélectionnez un territoire ouvert",
+    "clearAll": "Tout effacer",
+    "downloadTitle": "Téléchargements:",
+    "brandType":"Type de marque"
+  },
+  "product": {
+    "new":"NOUVELLE"
+  },
+  "productPage": {
+    "result": "Résultats",
+    "noItems": "Aucun élément trouvé.",
+    "toastSec": {
+      "title": "Passer à la caisse",
+      "item": "Items"
+    },
+    "items":"Articles",
+    "searchPlaceholder": "Recherche",
+    "sorted": {
+      "label": "Trié par",
+      "values": ["Disponibilité"]
+    },
+    "card": {
+      "brand": "Marque",
+      "unit": "Unités/Paquet",
+      "limit": "Restante Limite",
+      "addToCart": "Ajouter au panier",
+      "back": "Arrière",
+      "ordered": "Commandé",
+      "download": "Télécharger",
+      "available": "Disponible",
+      "itemId": "ID de l'article",
+      "period": "Période",
+      "dtp": "DTP",
+      "handCarry": "portative"      
+    }
+  },
+  "transferPage": {
+    "title": "Transférer les limites DTP",
+    "subTitle": "Utilisez cette page pour transférer vos limites DTP.",
+    "warningTransferNotAllowed": "Requête de transfert refusée : Vous avez dépassé la limite de transferts autorisés ou vous êtes hors de la période permise. Les transferts supplémentaires ne sont actuellement pas autorisés.",
+    "buttons": ["Réinitialiser", "Soumettre pour transfert"],
+    "labels": ["Type de transfert", "Transférer à", "Des produits"],
+    "apiMessageCode": {
+      "SUCCESS_TRANSFER": "Transfert complété avec succès.",
+      "SERVER_ERROR_GENERIC": "Une erreur inattendue s'est produite. Veuillez réessayer ou contacter le support si le problème persiste.",
+      "SERVER_ERROR_SERVICE_UNAVAILABLE": "Nos services sont temporairement indisponibles. Veuillez réessayer plus tard.",
+      "SERVER_ERROR_INTRASERVICE_REQUEST_FAILED_QANTITY_MISMATCH": "La quantité de transfert dépasse le stock disponible ou est invalide. Veuillez vérifier votre quantité et réessayer.",
+      "SERVER_ERROR_INVALID_PRODUCT": "Ce produit ne peut pas être transféré. Veuillez choisir un autre produit.",
+      "SERVER_ERROR_REQUIRED_REP": "Un identifiant de représentant manque pour l'un des représentants et est requis pour ce transfert.",
+      "SERVER_ERROR_REQUIRED_PRODUCTS": "Échec de récupération de la liste des produits pour le type de transfert sélectionné. Veuillez réessayer.",
+      "SERVER_ERROR_INTRASERVICE_WITH_PRODUCT": "Le transfert a échoué. Veuillez vous assurer que les deux territoires sélectionnés ont les allocations de produits nécessaires dans le système Ti Allocate.",
+      "SERVER_ERROR_INTRASERVICE_REQUEST_FAILED": "Impossible de terminer la demande intra-service. En raison d'un déséquilibre de quantité.",
+      "SERVER_ERROR_TRANSFER_UNIT_MUST_GEATER_THAN_ZERO": "L'unité de transfert doit être supérieure à zéro.",
+      "SERVER_ERROR_TRANSFER_CLIENT_ID_IS_REQUIRED": "L'ID du client est requis.",
+      "SERVER_ERROR_TRANSFER_TERRITORY_ID_IS_REQUIRED": "L'ID du territoire est requis.",
+      "SERVER_ERROR_TRANSFER_PRODUCT_ID_IS_REQUIRED": "L'ID du produit est requis.",
+      "SERVER_ERROR_TRANSFER_PRODUCT_ID_DUPLICATE": "L'ID du produit est en double dans la collection.",
+      "SERVER_ERROR_TRANSFER_PRODUCTS_REQUIRED": "Les produits sont requis dans la collection.",
+      "SERVER_ERROR_UNABLE_TO_UPDATE_ENTITY": "Impossible de mettre à jour l'entité de la base de données.",
+      "SERVER_ERROR_TRANSFER_FROM_TERRITORY_ID_IS_REQUIRED": "L'ID du territoire source est requis.",
+      "SERVER_ERROR_TRANSFER_TO_TERRITORY_ID_IS_REQUIRED": "L'ID du territoire de destination est requis.",
+      "SERVER_ERROR_INVALID_TRANSFER_DATE": "La date de transfert doit être la date d'aujourd'hui.",
+      "SERVER_ERROR_INVALID_TRANSFER_DATE_IS_REQUIRED": "La date de transfert est requise.",
+      "SERVER_ERROR_INVALID_TO_AND_FROM_TERRITORY": "Les ID de territoire de destination et de source ne doivent pas être les mêmes.", 
+      "SERVER_ERROR_SUBMISSION_NOT_ALLOWED_WHILE_IMPERSONATION": "Vous ne pouvez pas soumettre un transfert en vous faisant passer pour un utilisateur."     
+    },
+  "submitTransfer": {
+    "title": "Êtes-vous sûr de vouloir procéder au transfert?",
+    "noproductselected": "Veuillez sélectionner au moins un produit.",
+    "buttons": ["Non", "Oui", "D'accord"]
+  }
+},
+  "orderHistory": {
+    "mainTitle": "HISTORIQUE DES COMMANDES",
+    "result": "Résultats",
+    "clearFilter": "Effacer les filtres",
+    "searchPlaceholder": "Rechercher",
+    "filter": {
+      "title": "Filtres",
+      "label": "Pour le dernier",
+      "month": "Mois",
+      "customDate": "Date personnalisée"
+    },
+    "card": {
+      "headers": [
+        "ID DE COMMANDE",
+        "Statut",
+        "Commandé le",
+        "Taper",
+        "Quantité"
+      ],
+      "actionBtns": ["VOIR L'ORDRE", "SUIVI DE COMMANDE", "RÉORGANISER"]
+    },
+    "apiMessageCode": {
+      "SERVER_ERROR_GENERIC": "Une erreur inattendue s'est produite. Veuillez réessayer ou contacter le support si cela persiste.",
+      "SERVER_ERROR_REORDER_WITH_PRODUCT": "Échec de la réorganisation pour un ou plusieurs produits. Veuillez réessayer ou continuez à réorganiser avec les produits disponibles.",
+      "SERVER_ERROR_REORDER_REQUEST_PRODUCT_QUANTITYLIMITREACHED": "Vous avez atteint la limite de quantité pour ce produit.",
+      "SERVER_ERROR_REORDER_REQUEST_PRODUCT_THRESHOLDEXCEEDED": "La quantité pour ce produit dépasse le seuil autorisé.",
+      "SERVER_ERROR_REORDER_REQUEST_PRODUCT_OUTOFSTOCK": "Ce produit est en rupture de stock.",
+      "SERVER_ERROR_REORDER_REQUEST_PRODUCT_UNAVAILABLE": "Ce produit est indisponible. Veuillez vérifier les quantités de votre commande et les seuils."
+    },
+     "confirmationDialog": {
+       "title": "Are you sure you wish to proceed with your reorder?",
+       "buttons": ["No", "Yes", "Ok"]
+     }
+  },
+    "transferHistory": {
+      "mainTitle": "HISTORIQUE DES TRANSFERT",
+      "result": "Résultats",
+      "clearFilter": "Effacer les filtres",
+      "searchPlaceholder": "Rechercher",
+      "filter": {
+        "title": "Filtres",
+        "label": "Pour le dernier",
+        "month": "Mois",
+        "customDate": "Date personnalisée"
+      },
+      "card": {
+        "headers": [
+          "ID de transfert",
+          "Transféré le",
+          "Taper",
+          "Articles",
+          "Statut"
+        ],
+        "actionBtns": ["VOIR LES DÉTAILS"]
+      },
+    "reorderModel": {
+      "msg": "Les articles de votre panier actuel seront supprimés, êtes-vous sûr de vouloir continuer ?"
+    }
+  },
+  "teamsPage" : {
+    "mainTitle": "Mon Équipe",
+    "subTitle" : "Veuillez sélectionner un échantillon pour voir les informations détaillées sur les limites de votre équipe.",
+    "datePeriod": "Période",
+    "searchProduct": "Sélectionner un Échantillon",
+    "titles" : ["Échantillons Déployés", "Disponibilité des Échantillons", "Échantillons en Stock"],
+    "allocated": "Allocated",
+    "remainingAllocation": "Remaining Allocation",
+    "onHand": "On Hand",
+    "productNoData":"Aucune donnée d'exemple disponible",
+    "productUnit": "Unités/Paquet",
+    "teamTable": {
+      "title": "Membres de Mon Équipe",
+      "searchText": "Rechercher",
+      "columns": ["Représentant des Ventes / ID", "ID du Territoire","Limite d'Échantillon", "Expédié pour Transport à la Main", "Distribué via DTP", "Échantillons Déployés/ Échantillons Restants", "Échantillons en Stock", "Action"],
+      "action": "Transfert",
+      "noData": "Veuillez sélectionner un échantillon pour examiner les métriques de l'équipe."
+    },
+    "from": "De",
+    "to" : "À",
+    "productId": "Identifiant du produit",
+    "repToRep": "Transfert entre représentants",
+    "submit": "Soumettre",
+    "cancel" : "Annuler",
+    "quantity" : "Quantité"
+  },
+  "cartPages": {
+    "selfOrder": {
+      "title": "Achats Chariot",
+      "subTitle": "Veuillez Compléter Votre Auto-commande",
+      "shippingPri": {
+        "title": "Priorité d'expédition",
+        "values": ["Normal", "Se précipiter", "Urgent"]
+      },
+      "headers": ["Adresse de livraison", "Articles demandés"],
+      "buttons": [
+        "Ajouter plus d'articles",
+        "Annuler cette commande",
+        "Envoyez votre commande"
+      ],
+      "itemsTag": {
+        "total": "TOTALE",
+        "items": "Produit"
+      },
+      "setPreferredAddress": "Définir comme adresse préférée",
+      "preferredAddressUpdated": {
+        "status": "Succès",
+        "message": "Adresse préférée mise à jour"
+      },
+      "preferredAddressUpdateFailed": {
+        "status": "Échec",
+        "message": "L'adresse préférée n'a pas pu être mise à jour"
+      },
+      "emptyCart": "Votre panier est vide.",
+      "continueShopping": "Continuer vos achats",
+      "errors": {
+        "validation": "Veuillez corriger toutes les erreurs ci-dessous",
+        "addressRequired": "L'adresse est obligatoire",
+        "impersonator": "Les commandes ne peuvent pas être passées en usurpant l'identité d'un autre utilisateur",
+        "submitError":"Une erreur inconnue s'est produite lors de l'enregistrement de votre commande",
+        "invalidCountryCode":"L'adresse sélectionnée ne contient pas le code du pays. Veuillez le corriger avant de soumettre la commande.",
+        "invalidQuntity":"Le produit - ###productid### ne peut pas être commandé en raison d'un dépassement des limites de l'utilisateur ou d'une quantité non valide.",
+        "ineligibleItem":"L'article - ###productid### Ce produit est indisponible. Veuillez vérifier les quantités de votre commande et les seuils."
+      }
+    },
+    "conventionShipment": {
+      "title": "Achats Chariot",
+      "subTitle": "Expédition conventionnée",
+      "shippingPri": {
+        "title": "Priorité d'expédition",
+        "values": ["Normal", "Se précipiter", "Urgent"]
+      },
+      "addressType": {
+        "self": "Soi",
+        "custom": "Personnalisé"
+      },
+      "headers": ["Adresse de livraison", "Articles demandés"],
+      "buttons": [
+        "Ajouter plus d'articles",
+        " Annuler cette commande ",
+        "Envoyez votre commande"
+      ],
+      "forms": ["Adresse", "Instructions de livraison"],
+      "itemsTag": {
+        "total": "TOTALE",
+        "items": "Produit"
+      },
+      "setPreferredAddress": "Définir comme adresse préférée",
+      "preferredAddressUpdated": {
+        "status": "Succès",
+        "message": "Adresse préférée mise à jour"
+      },
+      "preferredAddressUpdateFailed": {
+        "status": "Échec",
+        "message": "L'adresse préférée n'a pas pu être mise à jour"
+      },
+      "emptyCart": "Votre panier est vide.",
+      "continueShopping": "Continuer vos achats",
+      "errors": {
+        "validation": "Veuillez corriger toutes les erreurs ci-dessous",
+        "addressRequired": "L'adresse est obligatoire",
+        "impersonator": "Les commandes ne peuvent pas être passées en usurpant l'identité d'un autre utilisateur",
+        "submitError":"Une erreur inconnue s'est produite lors de l'enregistrement de votre commande",
+        "invalidCountryCode":"L'adresse sélectionnée ne contient pas le code du pays. Veuillez le corriger avant de soumettre la commande.",
+        "invalidQuntity":"Le produit - ###productid### ne peut pas être commandé en raison d'un dépassement des limites de l'utilisateur ou d'une quantité non valide.",
+        "ineligibleItem":"L'article - ###productid### dans votre panier n'est pas éligible pour votre éligibilité à l'expédition."
+      }
+    },
+    "dropShipment": {
+      "title": "Achats Chariot",
+      "subTitle": "Expédition conventionnée",
+      "shippingPri": {
+        "title": "Priorité d'expédition",
+        "values": ["Normal", "Se précipiter", "Urgent"]
+      },
+      "headers": ["Adresse de livraison", "Articles demandés"],
+      "buttons": [
+        "Ajouter plus d'articles",
+        " Annuler cette commande ",
+        "Envoyez votre commande"
+      ],
+      "forms": [
+        "Réception Prénom",
+        "Nom de famille du destinataire",
+        "Instructions de livraison",
+        " Ajouter une nouvelle adresse"
+      ],
+      "itemsTag": {
+        "total": "TOTALE",
+        "items": "Produit"
+      },
+      "emptyCart": "Votre panier est vide.",
+      "continueShopping": "Continuer vos achats",
+      "errors": {
+        "validation": "Veuillez corriger toutes les erreurs ci-dessous",
+        "addressRequired": "L'adresse est obligatoire",
+        "impersonator": "Les commandes ne peuvent pas être passées en usurpant l'identité d'un autre utilisateur",
+        "submitError":"Une erreur inconnue s'est produite lors de l'enregistrement de votre commande",
+        "invalidCountryCode":"L'adresse sélectionnée ne contient pas le code du pays. Veuillez le corriger avant de soumettre la commande.",
+        "invalidQuntity":"Le produit - ###productid### ne peut pas être commandé en raison d'un dépassement des limites de l'utilisateur ou d'une quantité non valide.",
+        "ineligibleItem":"L'article - ###productid### dans votre panier n'est pas éligible pour votre éligibilité à l'expédition."
+      }
+    },
+    "fedExWarningMessage" : "Les articles Rx ne peuvent être expédiés que vers un emplacement FedEx ou Walgreens. Veuillez fournir une adresse Fedex/Walgreens mise à jour.",
+    "axsomeWarning": "Sélectionnez la quantité correcte dans le menu déroulant avant de soumettre votre commande pour éviter les retards ou les erreurs."
+  },
+  "models": {
+    "filter": {
+      "mainTitle": "Filtrer les commandes",
+      "labels": [
+        "Afficher l'ordre pour le dernier",
+        "Taper",
+        "Représentant commercial",
+        "Statut"
+      ],
+      "valuesMon": ["Mois", "Toute", "Date personnalisée"],
+      "buttons": ["Tout effacer", "Annuler", "Appliquer"],
+      "options": [
+        "Sélectionner le genre",
+        "Sélectionnez un représentant",
+        "Sélectionner le statut"
+      ]
+    },
+    "viewOrder": {
+      "headers": [
+        "NUMÉRO DE COMMANDE",
+        "Taper",
+        "Statut",
+        "Commandé le",
+        "Date d'expédition"
+      ],
+      "detailsHeaders": [
+        "Commander par",
+        "Expédition à",
+        "Suivi#",
+        "Promotionnel",
+        "Échantillons",
+        "CID/Identifiant d'employé"
+      ],
+      "totalItems": "Totale produits ",
+      "tracking": "Suivie",
+      "status": "Statut",
+      "deliveredOn": "Délivré le"
+    },
+    "viewTransferHistory": {
+      "headers": ["ID de transfert", "Taper", "Transféré le", "Représentant commercial à"],
+      "totalItems": "Totale produits ",
+      "tracking": "Suivie",
+      "status": "Statut",
+      "deliveredOn": "Délivré le"
+    },
+    "addAddress": {
+      "formFields": [
+        "Adresse 1",
+        "Adresse Ligne 2",
+        "Ville",
+        "État",
+        "Zip",
+        "Code Postal",
+        "De campagne",
+        "Code Postal 2"
+      ],
+      "formFieldsDropdown": {
+        "country": "sélectionnez le pays",
+        "state": "sélectionnez l'état"
+      },
+      "buttons": ["Dégager", "Ajouter", "mettre à jour"],
+
+      "errors": {
+        "validation": "Veuillez corriger toutes les erreurs ci-dessous.",
+        "required": " est requis.",
+        "patternSC": "Caractère spécial non autorisé",
+        "minLength": " la longueur doit être supérieure à 3.",
+        "maxLength": " la longueur doit être inférieure à 255.",
+        "zip": " doit contenir 5 chiffres.",
+        "zipMaxLength": " la longueur doit être inférieure ou égale à 5.",
+        "zip4": " doit contenir 4 chiffres.",
+        "zip4MaxLength": " la longueur doit être inférieure ou égale à 4.",
+        "onlyNumber": " ne doit être que des nombres",
+        "zipMaxLength7": " la longueur doit être inférieure ou égale à 7.",
+        "Canada": " n'est pas un code postal canadien valide."
+      }
+    },
+    "removeFromCart": {
+      "title": "Supprimer du panier?",
+      "desc": "Cet produit les seront supprimés de votre panier.",
+      "buttons": ["Non", "Oui", "Retour aux produits"]
+    },
+    "cancelOrder": {
+      "title": "Annuler cette commande ?",
+      "desc": "Tous les produit seront supprimés de votre panier.",
+      "buttons": ["Fermer", "Oui"]
+    },
+    "clearCart": {
+      "title": "Vider le panier?",
+      "desc": "Tous les articles seront supprimés de votre panier. Cela vous obligera à recommencer.",
+      "buttons": ["Fermer", "Ferme tout"]
+    },
+    "submitOrder": {
+      "title": "Êtes-vous sûr de vouloir soumettre votre commande ?",
+      "buttons": ["Non", "Oui", "d'accord", "Continuer"]
+    }
+  },
+  "impersonate": {
+    "title": "Vous usurpez actuellement l'identité",
+    "buttons": ["Arrêter imiter "],
+    "error": "Une erreur inconnue s'est produite lors de l'usurpation de l'identité de l'utilisateur. Veuillez réessayer ultérieurement."
+  },
+  "adminUser": {
+    "title": "Utilisatrice",
+    "placeHolder": "Rechercher un utilisateur",
+    "tableheader": ["Nom", "Territoire", "Nom de l'équipe", "E-mail"],
+    "buttons": ["Imiter "],
+    "noUser": "Aucun utilisateur trouvé."
+  },
+  "common": {
+    "back": "Retour aux produits",
+    "menus": [
+      "Domicile",
+      "Historique des commandes",
+      "Sales Reps",
+      "GRC",
+      "LMS",
+      "Se déconnecter",
+      "Historique des transferts",
+      "Mes limites PAO",
+      "mon équipe"
+    ]
+  },
+  "paginationButtons": {
+      "next": "Suivant",
+      "previous": "Précédent"
+  }
+}

@@ -1,0 +1,109 @@
+<div class="modal-backdrop">
+  <div class="modal-container">
+
+    <!-- Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">{{ ('teamsPage.teamTable.action' | translate) }}</h2>
+      <span class="close-icon" aria-label="Close" (click)="onCloseModal()" data-toggle="tooltip" data-placement="top"
+        title="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+            fill="#555555" />
+        </svg>
+      </span>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      <div class="modal-columns">
+        <!-- Left Column -->
+        <div class="left-column">
+          <div class="product-id">{{ ('teamsPage.productId' | translate)}}: <span
+              class="prod-id">{{productDetails.id}}</span> </div>
+          <h3 class="product-name">{{productDetails.brand}}</h3>
+          <p class="product-description">{{productDetails.name}}</p>
+          <p class="product-units">{{ ('teamsPage.productUnit' | translate)}}: {{productDetails.unitsPerPackage}}</p>
+          <p class="product-limit">{{ ('productPage.card.limit' | translate)}}: {{ toRep?.RemainingBalance | number }} </p>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-column">
+          <div class="transfer-type">{{ ('models.filter.labels' | translate)[1]}}: <span>{{ ('teamsPage.repToRep' | translate)}}</span> </div>
+
+          <div class="transfer-to">
+            <label>{{ ('teamsPage.from' | translate)}}:</label>
+            <div class="select-wrapper">
+              <select [(ngModel)]="toRep" class="rep-select" [compareWith]="compareReps" (ngModelChange)="onRepChange($event)">
+                <option *ngFor="let rep of allMembers" [ngValue]="rep" [disabled]="rep.TerritoryId === member.TerritoryId">
+                  {{
+                  rep.Rep_FirstName || rep.Rep_LastName
+                  ? rep.TerritoryId + ' - ' + (rep.Rep_FirstName || '') + ' ' + (rep.Rep_LastName || '')
+                  : rep.TerritoryId
+                  }}
+                </option>
+              </select>
+              <div class="select-arrow">▼</div>
+            </div>
+          </div>
+
+          <div class="transfer-from">
+            <label>{{ ('teamsPage.to' | translate)}}:</label>
+            <div class="rep-name" [title]="member.Rep_FirstName || member.Rep_LastName 
+                            ? member.TerritoryId + ' - ' + (member.Rep_FirstName || '') + ' ' + (member.Rep_LastName || '') 
+                            : member.TerritoryId">
+              {{
+              member.Rep_FirstName || member.Rep_LastName
+              ? member.TerritoryId + ' - ' + (member.Rep_FirstName || '') + ' ' + (member.Rep_LastName || '')
+              : member.TerritoryId
+              }}
+            </div>
+          </div>
+       
+          <div class="quantity-section">
+            <label>{{ ('teamsPage.quantity' | translate)}}:</label>
+            <div class="quantity-controls">
+              <button
+                class="quantity-button minus"
+                [disabled]="quantity <= 1"
+                [style.opacity]="quantity <= 1 ? 0.5 : 1"
+                (click)="decreaseQuantity()"
+              >
+                −
+              </button>
+              <input
+                type="number"
+                class="quantity-input"
+                [min]="1"
+                [max]="maxQuantity"
+                [(ngModel)]="quantity"
+                (blur)="onQuantityChange(quantity)"
+                [class.error-input]="quantityError"
+              />
+              <button
+                class="quantity-button plus"
+                [disabled]="quantity >= maxQuantity"
+                [style.opacity]="quantity >= maxQuantity ? 0.5 : 1"
+                (click)="increaseQuantity()"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button class="cancel-button" (click)="onCloseModal()">{{ ('teamsPage.cancel' | translate)}}</button>
+      <button class="submit-button" (click)="onSubmit()" [disabled]="quantity <= 0 || quantity > maxQuantity || !toRep"
+        [ngStyle]="{
+          'opacity': (quantity <= 0 || quantity > maxQuantity || !toRep) ? 0.5 : 1,
+          'cursor': (quantity <= 0 || quantity > maxQuantity || !toRep) ? 'not-allowed' : 'pointer'
+        }">
+        {{ ('teamsPage.submit' | translate) }}
+      </button>
+    </div>
+  </div>
+</div>

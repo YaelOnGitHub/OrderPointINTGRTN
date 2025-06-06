@@ -1,0 +1,45 @@
+.stop {
+    cursor: pointer;
+    color: #c30f0f;
+    margin-left: 20px;
+}
+
+.impersonating {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #ffffff;
+    margin-left: 100px; /* Align with sort by */
+}
+
+.dropdown-menu {
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    min-width: 50px;
+    margin-top: 6px;
+}
+.nav-link.lng {
+    width: 60px;
+}
+
+.logo-section a {
+    cursor: pointer;
+}
+.ti-app > img {
+    max-height: 20px;
+}
+
+.languageDropDown{
+    margin-left: 60% !important;
+}
+
+.borderedTop{
+    border-top: 1px solid #f2f2f2;
+}
+
+.borderedBottom{
+    border-bottom: 1px solid #f2f2f2;
+}

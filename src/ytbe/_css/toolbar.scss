@@ -1,0 +1,28 @@
+@import 'theming';
+@import 'icons';
+
+@mixin ytbe-common-toolbar {
+  .y-toolbar {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    flex:0 0 auto;
+
+    &.y-toolbar-bottom {
+      margin-top: $y-icon-size;
+      order:9999; /* Always appear at bottom of container */
+    }
+
+    &.y-toolbar-right {
+      justify-content: flex-end;
+    }
+  }
+}
+
+//toolbar theming
+@mixin ytbe-theme-toolbar($theme) {
+  $primary: map-get($theme, primary);
+  $secondary: map-get($theme, secondary);
+}

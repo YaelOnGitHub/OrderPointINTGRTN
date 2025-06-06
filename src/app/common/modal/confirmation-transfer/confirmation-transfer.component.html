@@ -1,0 +1,52 @@
+<div>
+    <div class="modal-header">
+        <span class="close-icon" aria-label="Close" (click)="onCloseModal()" data-toggle="tooltip" data-placement="top"
+            title="Close">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                    fill="#555555" />
+            </svg>
+        </span>
+    </div>
+    <div class="modal-body">
+        <div class="title" *ngIf="title === null">
+            {{ ('transferPage.title' | translate) }}
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center" *ngIf="showSucessIcon">
+           
+            <div>
+                <img [src]="'assets/img/success.png'" alt="success" width="36" />
+            </div>
+
+            <div class="p-2">
+            </div>
+            
+            <div class="title" *ngIf="title !== null" [innerHTML]="title"></div>
+        </div>
+        
+        <div *ngIf="!showSucessIcon">
+            <div class="title" *ngIf="title !== null" [innerHTML]="title"></div>
+            <div class="details" *ngIf="details !== null" [innerHTML]="details"></div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <div *ngIf="!onlyOK">
+            <button class="btn btn-ti-outline" (click)="modal.close(false)">{{ ('models.submitOrder.buttons' | translate)[0] }}</button>
+            <button class="btn btn-ti-primary" (click)="modal.close(true)">{{ ('models.submitOrder.buttons' | translate)[1] }}</button>
+        </div>
+
+
+        <div *ngIf="onlyOK">
+            <button class="btn btn-ti-primary" (click)="modal.close(true)">{{ ('models.submitOrder.buttons' | translate)[2] }}</button>
+        </div>
+
+        <!-- <button class="btn btn-ti-primary back_product" routerLink="./dashboard">Back to Products</button> -->
+
+        <!-- <button class="btn btn-ti-outline">REORDER</button> -->
+
+        <!-- <button>Back to Products</button> -->
+    </div>
+</div>

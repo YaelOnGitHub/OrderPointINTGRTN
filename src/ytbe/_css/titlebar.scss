@@ -1,0 +1,86 @@
+@import 'theming';
+@import 'icons';
+@import 'media';
+
+@mixin ytbe-common-titlebar {
+  //Application titlebar only
+  .y-titlebar-app {
+    z-index: 99;
+    /** Provides equal top and bottom borders.  Active buttons will receive a top border color. */
+    .y-btn {
+      background-color: transparent;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-radius: 0;
+      height: auto;
+      &:focus {
+        outline:0;
+      }
+    }
+  }
+  //Common for all titlebars
+  .y-titlebar {
+    height: $y-icon-size*2;
+    line-height: $y-icon-size*2;
+    box-sizing: border-box;
+    font-size: 11px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 0 0 auto;
+    position: relative;
+    overflow: hidden;
+    .y-toolbar {
+      align-self:stretch;
+    }
+    .y-title {
+      flex: 1 1 auto;
+      font-size: 16px;
+      padding: $y-icon-size/2;
+
+      .title-icon::before {
+        padding-left:0;
+      }
+    }
+  }
+}
+
+//titlebar theming
+@mixin ytbe-theme-titlebar($theme) {
+  $primary: map-get($theme, primary);
+  $secondary: map-get($theme, secondary);
+
+  //HEADER
+  .y-titlebar-app {
+    background-color: ytbe-color($primary, darker);
+    color: ytbe-color($secondary);
+
+    .y-btn {
+      color: ytbe-color($secondary);
+
+      &:hover {
+        background-color: ytbe-color($primary, accent);
+        color: ytbe-color($primary, accent-contrast);
+      }
+
+      &.active, &.active:hover { //Active controls should match side menu titlebar backgrounds
+        background-color: ytbe-color($primary, 400);
+        color: #fff;
+        border-top: 5px solid #fff;
+      }
+    }
+  }
+  //Defined here as this is shared with all modal type components (side menu, modal, etc.)
+  .y-titlebar-modal {
+    background-color: ytbe-color($primary, 300);
+    color: ytbe-color($primary, lighter);
+
+    .y-toolbar .y-btn {
+      color: ytbe-color($secondary, lighter);
+
+      &:hover {
+        background-color: rgba(255,255,255,0.1);
+      }
+    }
+  }
+}

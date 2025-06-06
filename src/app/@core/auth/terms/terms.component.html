@@ -1,0 +1,75 @@
+<section class="login-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="login-section">
+                    <div class="form-with-footer">
+                        <div class="box">
+
+                            <!-- header link forms -->
+                            <div class="gsk-box">
+                                <a href="#">
+                                    <img [src]="logoImageUrl" [alt]="clientName" />
+                                </a>
+                            </div>
+
+                            <div class="ti-box">
+                                <a href="#">
+                                    <img [src]="'assets/img/ti_order_logo.png'" alt="Ti Order Point">
+                                </a>
+                            </div>
+
+                            <div class="conditions" [innerHtml]="termsBlock">
+                                <!-- <div class="item">
+                                    <h4>{{ ('termsPage.details' | translate)[0].title }}</h4>
+                                    <p> {{ ('termsPage.details' | translate)[0].desc[0] }}</p>
+                                </div>
+
+                                <div class="item">
+                                    <h4>{{ ('termsPage.details' | translate)[1].title }}</h4>
+                                    <p> {{ ('termsPage.details' | translate)[1].desc[0] }}
+                                    </p>
+                                    <p>
+                                        {{ ('termsPage.details' | translate)[1].desc[1] }}
+                                    </p>
+                                    <p>
+                                        {{ ('termsPage.details' | translate)[1].desc[2] }}
+                                    </p>
+                                    <p>
+                                        {{ ('termsPage.details' | translate)[1].desc[3] }}
+                                    </p>
+                                </div> -->
+                            </div>
+
+                            <!-- header link -->
+
+                            <div class="action">
+                                <button class="btns decline" (click)="logout()">
+                                    {{ ('termsPage.actions' | translate)[0]?.title }}
+                                </button>
+                                <button class="btns accept" (click)="accept()">
+                                    {{ ('termsPage.actions' | translate)[1]?.title }} 
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Footer Links -->
+                        <div class="footer-bx">
+                            <a routerLink="" class="logo">
+                                <img [src]="'assets/img/Qpharma-logo-footer.png'" alt="Qpharma">
+                            </a>
+
+                            <div class="copyright"> 
+                                © QPharma Ti ORDERPOINT 2022
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,34 @@
+@import 'theming';
+
+// Overlay Common
+@mixin ytbe-common-overlay {
+  @keyframes y-show-overlay {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 0.6;
+    }
+  }
+
+  .y-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+// Overlay Theme
+@mixin ytbe-theme-overlay($theme) {
+  $primary: map-get($theme, primary);
+
+  // Overlay
+  .y-overlay {
+    background-color:ytbe-color($primary, darker);
+  }
+}

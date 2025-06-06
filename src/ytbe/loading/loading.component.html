@@ -1,0 +1,5 @@
+<div class="y-content">
+  <i class="icon-loading" *ngIf="!loadingCustom"></i> <!-- Use when custom loading is not defined -->
+  <ng-template [ngTemplateOutlet]="loadingCustom!.template"></ng-template>
+</div>
+<div class="y-overlay"></div>

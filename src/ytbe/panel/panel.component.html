@@ -1,0 +1,7 @@
+<ytbe-titlebar #titlebar *ngIf="!titlebarContent" [title]="title"></ytbe-titlebar>
+<ng-content select="ytbe-titlebar"></ng-content>
+<div class="y-content-container">
+  <div class="y-content" *ngIf="!collapsible || !collapsed" [@contentExpandCollapse]="contentAnimationState">
+    <ng-content></ng-content>
+  </div>
+</div>

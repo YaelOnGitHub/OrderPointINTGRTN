@@ -1,0 +1,11 @@
+// YTBE - Icons
+$y-icon-size: 22px !default; /* Ideal desktop size is 20px, ideal mobile is 24px */
+
+
+// MIXIN - ytbe-icons-sel
+// Selectors for icons
+@mixin ytbe-sel-icons($sel:'') {
+  #{$sel}[class^="icon-"]::before, #{$sel}[class*=" icon-"]::before {
+    @content;
+  }
+}

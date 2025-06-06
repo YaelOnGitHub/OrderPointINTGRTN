@@ -1,0 +1,475 @@
+{
+  "warningAddToCartLifetimeModal": {
+    "title": "Warning",
+    "subTitle": "You cannot proceed with this action",
+    "warningMessage" : "Please note, this product has a lifetime limit. Continue only if you wish to proceed with this order."
+  },
+  "warningAddToCartModal": {
+    "title": "Warning",
+    "subTitle": "You cannot proceed with this action",
+    "warningMessageSuper" : "This product can only be ordered by emailing OPOrdering@Supernus.com.<br/> Please send an email to 'OPOrdering@Supernus.com' to request this 'PATIENTS EVENTS ONLY' asset."
+  },
+  "quantityError": "Type only ",
+  "signInPage": {
+    "title": "SIGN IN",
+    "desc": "Please sign in to access your account",
+    "formFields": [
+      {
+        "label": "Username",
+        "error": "Username is required"
+      },
+      {
+        "label": "Password",
+        "error": "Password is required"
+      }
+    ],
+    "actions": [
+      {
+        "title": "Sign In"
+      },
+      {
+        "title": "Forgot Password?"
+      }
+    ],
+    "messages": {
+      "success": { "type": "Success", "message": "Login Successful" },
+      "invalidLogin": {
+        "type": "Error",
+        "message": "Invalid login id / password"
+      }
+    }
+  },
+  "signInSSOPage": {
+    "message": "Logging in. Please wait...",
+    "error": "Error has occured during login. Please try again or contact your system administrator."
+  },
+  "forgetPassword": {
+    "title": "FORGET PASSWORD",
+    "desc": "Please change password to access your account",
+    "formFields": [
+      {
+        "label": "Username",
+        "error": "Username is required"
+      },
+      {
+        "label": "New Password",
+        "error": "Password is required"
+      },
+      {
+        "label": "Confirm Password",
+        "error": "Confirm Password is required",
+        "errorMatch": "Password and Confirm Password must be match."
+      }
+    ],
+    "actions": [
+      {
+        "title": "Submit"
+      },
+      {
+        "title": "Sign In"
+      }
+    ]
+  },
+  "logOutPage": {
+    "message": "You have just logged out of OrderPoint"
+  },
+  "termsPage": {
+    "title": "",
+    "desc": "",
+    "details": [
+      {
+        "title": "TERMS AND CONDITIONS",
+        "desc": [
+          "Please read these terms and conditions carefully before using this website."
+        ]
+      },
+      {
+        "title": "CONDITIONS OF USE",
+        "desc": [
+          "Items may be placed on our picklist based on a group level assignment (selling team) and not on an indiviual level assignment (John Smith)",
+          "It is my responsibility to make sure that I have completed all required training prior to ordering samples of presciption drugs or promotional items for those products.",
+          "I am responsible for ensuring that my interactions and discussions with customers are consistent with GS Values, Police and Comercial Practices ad Procedures.",
+          "I will only order materials for which I have completed all requiring training."
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "title": "Decline"
+      },
+      {
+        "title": "Accept"
+      }
+    ]
+  },
+  "sideFilter": {
+    "newItemOnly": {
+      "title": "New Items Only"
+    },
+    "selectRep": "Select a Rep",
+    "selectTerritory": "Select an Open Territory",
+    "downloadTitle": "Downloads:",
+    "brandType": "Brand Type",
+    "aiExpert": "AI Expert"
+  },
+  "product": {
+    "new":"NEW"
+  },
+  "productPage": {
+    "result": "Results",
+    "noItems": "No Item Found.",
+    "toastSec": {
+      "title": "Proceed to Checkout",
+      "item": "Items"
+    },
+    "items":"Items",
+    "searchPlaceholder": "Search",
+    "sorted": {
+      "label": "sorted by",
+      "values": ["Availablity"]
+    },
+    "card": {
+      "brand": "Brand",
+      "unit": "Units/Package",
+      "limit": "Remaining Limit",
+      "addToCart": "Add to cart",
+      "back": "Back",
+      "ordered": "Ordered",
+      "download": "Download",
+      "available": "Available",
+      "itemId": "Item ID",
+      "period": "Period",
+      "dtp": "DTP",
+      "handCarry": "Hand Carry"     
+    }
+  },
+  "transferPage": {
+    "title": "Transfer DTP Limits",
+    "subTitle": "Use this page to transfer your DTP limits.",
+    "warningTransferNotAllowed": "Transfer request denied: You have exceeded the allowed transfer limit or are outside the permitted window. Further transfers are currently not allowed.",
+    "buttons": ["Reset", "Submit For Transfer", "Refresh"],
+    "labels": ["Transfer Type", "Transfer To", "Products"],
+    "apiMessageCode": {
+      "SUCCESS_TRANSFER": "Transfer completed successfully.",
+      "SERVER_ERROR_GENERIC": "An unexpected error occurred. Please try again or contact support if the issue continues.",
+      "SERVER_ERROR_SERVICE_UNAVAILABLE": "Our services are temporarily unavailable. Please try again later.",
+      "SERVER_ERROR_INTRASERVICE_REQUEST_FAILED_QANTITY_MISMATCH": "The transfer quantity exceeds the available stock or is invalid. Please verify your quantity and try again.",
+      "SERVER_ERROR_INVALID_PRODUCT": "This product cannot be transferred. Please choose a different product.",
+      "SERVER_ERROR_REQUIRED_REP": "A representative ID is missing for one of the representatives and is required for this transfer.",
+      "SERVER_ERROR_REQUIRED_PRODUCTS": "Failed to retrieve the product list for the selected transfer type. Please try again.",
+      "SERVER_ERROR_INTRASERVICE_WITH_PRODUCT": "Transfer Failed. Please ensure that both selected territories have necessary product allocations in the Ti Allocate system.",
+      "SERVER_ERROR_INTRASERVICE_REQUEST_FAILED": "Unable to complete Intra-Service request. Due to quantity mismatch.",
+      "SERVER_ERROR_TRANSFER_UNIT_MUST_GEATER_THAN_ZERO": "Transfer unit must be greater than zero.",
+      "SERVER_ERROR_TRANSFER_CLIENT_ID_IS_REQUIRED": "Client Id is required.",
+      "SERVER_ERROR_TRANSFER_TERRITORY_ID_IS_REQUIRED": "Territory Id is required.",
+      "SERVER_ERROR_TRANSFER_PRODUCT_ID_IS_REQUIRED": "Product Id is required.",
+      "SERVER_ERROR_TRANSFER_PRODUCT_ID_DUPLICATE": "Product Id is duplicate in collection.",
+      "SERVER_ERROR_TRANSFER_PRODUCTS_REQUIRED": "Products are required in collection.",
+      "SERVER_ERROR_UNABLE_TO_UPDATE_ENTITY": "Unable to update database entity.",
+      "SERVER_ERROR_TRANSFER_FROM_TERRITORY_ID_IS_REQUIRED": "From Territory Id is required.",
+      "SERVER_ERROR_TRANSFER_TO_TERRITORY_ID_IS_REQUIRED": "To Territory Id is required.",
+      "SERVER_ERROR_INVALID_TRANSFER_DATE": "Transfer date must be today's date.",
+      "SERVER_ERROR_INVALID_TRANSFER_DATE_IS_REQUIRED": "Transfer date is required.",
+      "SERVER_ERROR_INVALID_TO_AND_FROM_TERRITORY": "To Territory Id and From Territory Id must not be same.",
+      "SERVER_ERROR_SUBMISSION_NOT_ALLOWED_WHILE_IMPERSONATION": "You cannot submit a transfer while impersonating a user."      
+      },
+  "submitTransfer": {
+    "title": "Are you sure you wish to proceed with Transfer?",
+    "noproductselected": "Please select at least one product.",
+    "buttons": ["No", "Yes", "Ok"]
+  }
+},
+  "orderHistory": {
+    "mainTitle": "ORDER HISTORY",
+    "result": "Results",
+    "clearFilter" : "Clear Filters",
+    "searchPlaceholder": "Search",
+    "filter": {
+      "title": "Filters",
+      "label": "For The Last",
+      "month": "Months",
+      "customDate": "Custom Date"
+    },
+    "card": {
+      "headers": ["ORDER ID", "Status ", "Ordered On", "Type ", "Quantity "],
+      "actionBtns": ["VIEW ORDER", "TRACK ORDER", "REORDER"]
+    },
+    "reorderModel": {
+      "msg": "Your current cart items will be removed, Are you sure you want to continue?"
+    },
+    "apiMessageCode": {
+      "SERVER_ERROR_GENERIC": "An unexpected error occurred. Please try again or contact support if it persists.",    
+      "SERVER_ERROR_REORDER_WITH_PRODUCT": "Failed to reorder one or more products. Please try again or continue reordering with the available products.",    
+      "SERVER_ERROR_REORDER_REQUEST_PRODUCT_QUANTITYLIMITREACHED": "You have reached the quantity limit for this product.",    
+      "SERVER_ERROR_REORDER_REQUEST_PRODUCT_THRESHOLDEXCEEDED": "The quantity for this product exceeds the allowed threshold.",    
+      "SERVER_ERROR_REORDER_REQUEST_PRODUCT_OUTOFSTOCK": "This product is out of stock.",    
+      "SERVER_ERROR_REORDER_REQUEST_PRODUCT_UNAVAILABLE": "This product is unavailable. Please check your order quantities and thresholds."    
+    },
+      "confirmationDialog": {
+        "title": "Are you wish to proceed reordering with the available products?",
+        "buttons": ["No", "Continue ReOrder", "Ok"]
+      }
+  },
+  "transferHistory": {
+    "mainTitle": "TRANSFER HISTORY",
+    "result": "Results",
+    "clearFilter" : "Clear Filters",
+    "searchPlaceholder": "Search",
+    "filter": {
+      "title": "Filters",
+      "label": "For The Last",
+      "month": "Months",
+      "customDate": "Custom Date"
+    },
+    "card": {
+      "headers": ["Transfer ID","Transferred On", "Type", "Items", "Status"],
+      "actionBtns": ["VIEW DETAILS"]
+    },
+    "reorderModel": {
+      "msg": "Your current cart items will be removed, Are you sure you want to continue?"
+    }
+  },
+  "teamsPage" : {
+    "mainTitle": "MY TEAM",
+    "subTitle" : "Please select a sample to view detailed information about your team's Limits",
+    "datePeriod": "Period",
+    "searchProduct": "Select a Sample",
+    "titles" : ["Samples Deployed", "Sample Availability", "Samples On Hand"],
+    "allocated": "Allocated",
+    "remainingAllocation": "Remaining Allocation",
+    "onHand": "On Hand",
+    "productNoData":"No sample data available",
+    "productUnit": "Units/Package",
+    "teamTable": {
+      "title": "My Team Members",
+      "searchText": "Search",
+      "columns": ["Sales Rep / ID", "Territory ID","Sample Limit", "Shipped for Hand Carry", "Disbursed via DTP", "Samples Deployed/ Samples Remaining", "Samples On Hand","Action"],
+      "action": "Transfer",
+      "noData": "Please select a sample to review the team's metrics."
+    },
+    "from": "From",
+    "to" : "To",
+    "productId": "Product ID",
+    "repToRep": "Rep to Rep",
+    "submit": "Submit",
+    "cancel" : "Cancel",
+    "quantity" : "Quantity"
+  },
+  "cartPages": {
+    "selfOrder": {
+      "title": "SHOPPING CART",
+      "subTitle": "Please Complete Your Self Order",
+      "shippingPri": {
+        "title": "Shipping Priority",
+        "values": ["Normal", "Rush", "Urgent"]
+      },
+      "headers": ["Shipping Address", "Items Requested"],
+      "buttons": ["Add More Items", "Cancel This Order", "Submit Your Order"],
+      "itemsTag": {
+        "total": "TOTAL",
+        "items": "Items"
+      },
+      "setPreferredAddress": "Set as preferred Address",
+      "preferredAddressUpdated": {
+        "status": "Success",
+        "message": "Preferred Address Updated"
+      },
+      "preferredAddressUpdateFailed": {
+        "status": "Failure",
+        "message": "Preferred Address Could Not Be Updated"
+      },
+      "emptyCart": "Your shopping cart is empty.",
+      "continueShopping": "Continue shopping",
+      "errors": {
+        "validation": "Please correct all errors below",
+        "addressRequired": "Address is required",
+        "impersonator": "Orders cannot be placed while impersonating another user",
+        "submitError":"There was an unknown error while saving your order",
+        "invalidCountryCode":"The selected address is missing the country code. Please correct it before order submission.",
+        "invalidQuntity":"The product - ###productid### cannot be ordered due to exceeding user limits or an invalid quantity.",
+        "ineligibleItem":"The item - ###productid### This product is unavailable. Please check your order quantities and thresholds."
+      }
+    },
+    "conventionShipment": {
+      "title": "SHOPPING CART",
+      "subTitle": "Convention Shipment",
+      "shippingPri": {
+        "title": "Shipping Priority",
+        "values": ["Normal", "Rush", "Urgent"]
+      },
+      "addressType": {
+        "self": "Self",
+        "custom": "Custom"
+      },
+      "headers": ["Shipping Address", "Items Requested"],
+      "buttons": [
+        "Add More Items",
+        " Cancel This Order ",
+        " Submit Your Order "
+      ],
+      "forms": ["Address", "Delivery Instructions"],
+      "itemsTag": {
+        "total": "TOTAL",
+        "items": "Items"
+      },
+      "setPreferredAddress": "Set as preferred Address",
+      "preferredAddressUpdated": {
+        "status": "Success",
+        "message": "Preferred Address Updated"
+      },
+      "preferredAddressUpdateFailed": {
+        "status": "Failure",
+        "message": "Preferred Address Could Not Be Updated"
+      },
+      "emptyCart": "Your shopping cart is empty.",
+      "continueShopping": "Continue shopping",
+      "errors": {
+        "validation": "Please correct all errors below",
+        "addressRequired": "Address is required",
+        "impersonator": "Orders cannot be placed while impersonating another user",
+        "submitError":"There was an unknown error while saving your order",
+        "invalidCountryCode":"The selected address is missing the country code. Please correct it before order submission.",
+        "invalidQuntity":"The product - ###productid### cannot be ordered due to exceeding user limits or an invalid quantity.",
+        "ineligibleItem":"The item - ###productid### in your cart is ineligible for your shipment eligibility."
+      }
+    },
+    "dropShipment": {
+      "title": "SHOPPING CART",
+      "subTitle": "Drop-Shipment Retail",
+      "shippingPri": {
+        "title": "Shipping Priority",
+        "values": ["Normal", "Rush", "Urgent"]
+      },
+      "headers": ["Shipping Address", "Items Requested"],
+      "buttons": [
+        "Add More Items",
+        " Cancel This Order ",
+        " Submit Your Order "
+      ],
+      "forms": [
+        "Recipient First Name",
+        "Recipient Last Name",
+        "Delivery Instructions",
+        "Add new Address"
+      ],
+      "itemsTag": {
+        "total": "TOTAL",
+        "items": "Items"
+      },
+      "emptyCart": "Your shopping cart is empty.",
+      "continueShopping": "Continue shopping",
+      "errors": {
+        "validation": "Please correct all errors below",
+        "addressRequired": "Address is required",
+        "impersonator": "Orders cannot be placed while impersonating another user",
+        "submitError":"There was an unknown error while saving your order",
+        "invalidCountryCode":"The selected address is missing the country code. Please correct it before order submission.",
+        "invalidQuntity":"The product - ###productid### cannot be ordered due to exceeding user limits or an invalid quantity.",
+        "ineligibleItem":"The item - ###productid### in your cart is ineligible for your shipment eligibility."
+      }
+    },
+    "fedExWarningMessage" : "Rx items can only be shipped to either a FedEx or Walgreens location.  Please provide an updated Fedex/Walgreens address.",
+    "axsomeWarning": "Select the correct quantity from the dropdown before submitting your order to avoid delays or errors."
+  },
+  "models": {
+    "filter": {
+      "mainTitle": "Filter Orders",
+      "labels": ["Show Orders For The Last", "Type", "Sales Rep", "Status"],
+      "valuesMon": ["Months", "All", "Custom Date"],
+      "buttons": ["Clear All", "Cancel", "Apply"],
+      "options": ["Select type", "Select a Rep", "Select status"]
+    },
+    "viewOrder": {
+      "headers": ["ORDER ID", "Type", "Status", "Ordered On", "Shipment Date"],
+      "detailsHeaders": [
+        "Ordered By",
+        "Ship To",
+        "Tracking#",
+        "Promotional",
+        "Samples",
+        "CID/Employee ID"
+      ],
+      "totalItems": "Total Items",
+      "tracking": "Tracking",
+      "status": "Status",
+      "deliveredOn": "Delivered On"
+    },
+    "viewTransferHistory": {
+      "headers": ["Transfer ID", "Type", "Transfered on", "Rep To"],
+      "totalItems": "Total Items",
+      "tracking": "Tracking",
+      "status": "Status",
+      "deliveredOn": "Delivered On"
+    },
+    "addAddress": {
+      "formFields": [
+        "Address Line 1",
+        "Address Line 2",
+        "City",
+        "State",
+        "Zip",
+        "Postal Code",
+        "Country",
+        "Postal Code 2"
+      ],
+      "formFieldsDropdown": {
+        "country": "Select Country",
+        "state": "Select State"
+      },
+      "buttons": ["Clear", "Add", "Update"],
+      "errors": {
+        "validation": "Please correct all errors below.",
+        "required": " is required.",
+        "patternSC": "Special character not allowed",
+        "minLength": " length must be greater than 3.",
+        "maxLength": " length must be less than 255.",
+        "zip": " must contain 5 digits.",
+        "zipMaxLength": " length must be less or equal 5.",
+        "zip4": " must contain 4 digits.",
+        "zip4MaxLength": " length must be less or equal 4.",
+        "onlyNumber": " must be numbers only",
+        "zipMaxLength7": " length must be less or equal 7.",
+        "Canada" : " is not a valid Canadian postal code."
+      }
+    },
+    "removeFromCart": {
+      "title": "Remove From Cart?",
+      "desc": "This item will be removed from your cart.",
+      "buttons": ["No", "Yes", "Back to Products"]
+    },
+    "cancelOrder": {
+      "title": "Cancel This Order?",
+      "desc": "All the items will be removed from your cart.",
+      "buttons": ["Close", "Yes"]
+    },
+    "clearCart": {
+      "title": "Clear the cart?",
+      "desc": "All the items will be removed from your cart. This will require you to start over.",
+      "buttons": ["Close", "Close All"]
+    },
+    "submitOrder": {
+      "title": "Do you wish to submit your order?",
+      "buttons": ["No", "Yes", "Ok", "Continue"]
+    }
+  },
+  "impersonate": {
+    "title": "You are currently Impersonating",
+    "buttons": ["Stop Impersonating "],
+    "error": "There was an unknown error impersonating the user. Please try your request again later."
+  },
+  "adminUser": {
+    "title": "USERS",
+    "placeHolder": "Search for a User",
+    "tableheader": ["Name", "Territory", "Team Name", "E-mail"],
+    "buttons": ["Impersonate "],
+    "noUser": "No User found."
+  },
+  "common": {
+    "back": "Back to Products",
+    "menus": ["Home", "Order History", "Sales Reps", "CRM", "LMS", "Log Out", "Transfer History", "My DTP Limits", "My Team"]
+  },
+  "paginationButtons": {
+      "next": "Next",
+      "previous": "Previous"
+  }
+}

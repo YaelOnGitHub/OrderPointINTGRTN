@@ -1,0 +1,29 @@
+<!-- <h1>
+  {{theme}}
+</h1> -->
+<router-outlet></router-outlet>
+<ngx-spinner *ngIf="theme === 1 || theme === 0"
+  bdColor="rgba(54,54,54,0.8)"
+  size="medium"
+  [color]="'#be4b14'"
+  type="ball-scale-multiple"
+></ngx-spinner>
+
+<ngx-spinner *ngIf="theme === 2 "
+  bdColor="rgba(54,54,54,0.8)"
+  size="medium"
+  [color]="'#00008b'"
+  type="ball-scale-multiple"
+></ngx-spinner>
+
+<!-- Common Login Changer -->
+<!-- <div class="lang-mode-button">
+   
+    <a href="javascript:void(0)" class="toggle-en" (click)="setLang('fr')" *ngIf="translate.currentLang === 'en'">
+        FR
+    </a>
+
+    <a href="javascript:void(0)" class="toggle-fr" (click)="setLang('en')" *ngIf="translate.currentLang === 'fr'">
+        EN
+    </a>
+</div> -->

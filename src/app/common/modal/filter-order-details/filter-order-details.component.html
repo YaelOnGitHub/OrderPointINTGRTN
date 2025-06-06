@@ -1,0 +1,157 @@
+<div>
+    <div class="modal-header">
+        <span class="title">
+            <!-- <img src="../../../../assets/img/filter.png" alt="Filter Icon"> -->
+            {{ 'models.filter.mainTitle' | translate }}
+        </span>
+        <span class="close-icon" aria-label="Close" (click)="onCloseModal()" data-toggle="tooltip" data-placement="top"
+            title="Close">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M10 1.00714L8.99286 0L5 3.99286L1.00714 0L0 1.00714L3.99286 5L0 8.99286L1.00714 10L5 6.00714L8.99286 10L10 8.99286L6.00714 5L10 1.00714Z"
+                    fill="#1F1A1A" />
+            </svg>
+        </span>
+    </div>
+
+    <!-- "models" : {
+        "filter" : {
+            "mainTitle" : "Fiter Orders",
+            "labels" : [
+                "Show Orders For The Last",
+                "Type",
+                "Status"
+            ],
+            "valuesMon" : [
+                "Months",
+                "Custom Date"
+            ],
+            "buttons" : [
+                "Clear All",
+                "Cancel",
+                "Apply"
+            ]
+        }
+    }, -->
+    <form name="form" [formGroup]="filterFormModel">
+        <div class="modal-body">
+            <div class="form-box">
+                <div class="title">
+                    {{ ('models.filter.labels' | translate)[0] }}
+                </div>
+
+                <div class="months">
+                    <div>
+                        <input type="radio" (change)="changeRadio($event)" formControlName="month" value="3" id="three_month"
+                           >
+                        <label for="three_month" class="new">3 {{ ('models.filter.valuesMon' | translate)[0] }}</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" (change)="changeRadio($event)" formControlName="month" value="6" id="six_month"
+                           >
+                        <label for="six_month" class="new">6 {{ ('models.filter.valuesMon' | translate)[0] }}</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" (change)="changeRadio($event)" id="twelve_month" value="12" formControlName="month"
+                           >
+                        <label for="twelve_month" class="new">12 {{ ('models.filter.valuesMon' | translate)[0] }}</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" (change)="changeRadio($event)" id="all" formControlName="month" value="0"
+                            checked>
+                        <label for="all" class="new">{{ ('models.filter.valuesMon' | translate)[1] }}</label>
+                    </div>
+                </div>
+                
+                <input class="custom-date title" (datesUpdated)="changeDate($event)" 
+                    [(ngModel)]="filterData.selectDate"
+                    [linkedCalendars]="true"
+                    name="dateEnd" [placeholder]="('models.filter.valuesMon' | translate)[2]" id="dateEnd"
+                      ngxDaterangepickerMd formControlName="selectDate">
+
+            </div>
+
+            <!-- TYPE -->
+            <div class="form-box">
+                <div class="title" ngbDropdown>
+                    <span>{{ ('models.filter.labels' | translate)[1] }}</span>
+                    <div class="select-dropdown" ngbDropdownToggle>
+                        <span>{{ selectedType ? selectedType : ('models.filter.options' | translate)[0]  }}</span>
+                    </div>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="item-menu"
+                        style="transform: translate(80px, -186px)!important;">
+                        <button ngbDropdownItem class="item-num" *ngFor="let prod of orderTypes.values"
+                            (click)="selectOrderType(prod) ">
+                            <span>{{prod.title}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- SELECT REP -->
+            <div class="form-box" *ngIf="selectedTypeID == 5 && repSection">
+                <div class="title" ngbDropdown>
+                    <span>{{ ('models.filter.labels' | translate)[2] }}</span>
+                    <div class="select-dropdown" ngbDropdownToggle>
+                    <span>{{
+                        selectedRep
+                        ? selectedRep?.firstName + " " + selectedRep?.lastName
+                        : ('models.filter.options' | translate)[1]
+                    }}</span>
+                    </div>
+                    
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="item-menu"
+                        style="transform: translate(80px, -186px)!important;">
+                    <button
+                        ngbDropdownItem
+                        class="enabled-li-dropdown"
+                        *ngFor="let repItem of repsList"
+                        (click)="selectRep(repItem)">
+                    
+                        <span>{{ repItem?.firstName }} {{ repItem?.lastName }}</span>
+                    </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-box">
+                <div class="title" ngbDropdown>
+                    <span>{{ ('models.filter.labels' | translate)[3] }}</span>
+
+                    <div class="select-dropdown" ngbDropdownToggle>
+                        <span>{{ selectStatusValues ? selectedStatus : ('models.filter.options' | translate)[2] }}</span>
+                    </div>
+
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="item-menu"
+                        style="transform: translate(80px, -186px)!important;">
+                        <button [disabled]="prod.selected" ngbDropdownItem class="item-num"
+                            *ngFor="let prod of productStatus" (click)="prod.selected = true; insert()">
+                            <span>{{prod.title}}</span>
+                        </button>
+
+                    </div>
+
+                    <div class="items row" >
+                        <div *ngFor="let m of statusValues" class="col-12 col-md-3">
+                            {{ m.title }}  <span (click)="m.selected = false; insert()"> &#10006; </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <select class="select-dropdown" [(ngModel)]="mod.status" name="status" multiple #status="ngModel">
+                    <option value="" disabled selected>Select Status</option>
+                    <option *ngFor="let prod of productStatus" [value]="prod.statusValue">{{prod.StatusName}}</option>
+                </select> -->
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-ti-secondary" (click)="clearValue()">{{ ('models.filter.buttons' | translate)[0] }}</button>
+            <div class="action">
+                <button class="btn btn-ti-outline-danger" (click)="modal.close(false)">{{ ('models.filter.buttons' | translate)[1] }}</button>
+                <button class="btn btn-ti-primary" (click)="apply()">{{ ('models.filter.buttons' | translate)[2] }}</button>
+            </div>
+        </div>
+    </form>
+</div>

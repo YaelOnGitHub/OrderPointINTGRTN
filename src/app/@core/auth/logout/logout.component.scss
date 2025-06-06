@@ -1,0 +1,89 @@
+.login-page {
+    // height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    overflow: auto;
+    z-index: 1;
+    position: relative;
+    .login-section {
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+        padding-top: 5%;
+        height: 100vh;
+        z-index: 9;
+        position: relative;
+
+        @media (max-width: 567px) {
+            display: inline;
+            .form-with-footer {
+                padding-top: 66px;
+            }
+        }
+
+        // BOX
+        .box {
+            background: #ffffff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+            border-radius: 25px;
+            padding: 30px;
+
+            width: 610px;
+            min-height: 542px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            text-align: center;
+
+            @media (max-width: 567px) {
+                width: 100%;
+                height: auto;
+            }
+        }
+        // Form Login End
+
+        // Footer links
+        .footer-bx {
+            margin: auto;
+            text-align: center;
+
+            a.logo img {
+                margin: 35px auto 6px;
+            }
+            .copyright {
+                font-family: "Mulish", sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 20px;
+                text-align: center;
+                letter-spacing: 0.3px;
+                color: #4a4a4a;
+            }
+        }
+    }
+}
+::ng-deep .conditions{ 
+    strong {
+        font-family: "Lato", sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 20px;
+        text-transform: uppercase;
+        color: #4a4a4a;
+        margin-bottom: 5px;
+    }
+    p {
+        font-family: "Lato", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        color: #4a4a4a;
+    
+        margin-bottom: 18px;
+    }
+}

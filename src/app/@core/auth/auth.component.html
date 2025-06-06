@@ -1,0 +1,12 @@
+<router-outlet></router-outlet>
+
+<div class="lang-mode-button">
+
+    <a href="javascript:void(0)" class="toggle-en" (click)="setLang('fr')" *ngIf="translate.currentLang === 'en'">
+        FR
+    </a>
+
+    <a href="javascript:void(0)" class="toggle-fr" (click)="setLang('en')" *ngIf="translate.currentLang === 'fr'">
+        EN
+    </a>
+</div>

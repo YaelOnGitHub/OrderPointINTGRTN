@@ -1,0 +1,425 @@
+<div
+  class="filter-ic"
+  (click)="sidebarOpen = !sidebarOpen"
+  style="left: 16px; position: absolute"
+>
+  <img [src]="'assets/img/sidebar/filter.png'" alt="Filter Icon" />
+</div>
+<div class="sidebar scrolled sidebar-scroller" [ngClass]="{ opened: !sidebarOpen }" [ngClass]="{ scrolled: isDropdown }">
+  <div class="sidebar-scroller">
+    <div class="filter-ic" (click)="sidebarOpen = !sidebarOpen">
+      <img [src]="'assets/img/sidebar/filter.png'" alt="Filter Icon" />
+    </div>
+    <div class="filter-box">
+      <div class="head">
+        <img [src]="'assets/img/sidebar/1.png'" alt="{{ orderTypes.title }}" />
+        {{ orderTypes.title }}
+      </div>
+      <div class="options">
+        <ul>
+          <li *ngIf="this.allowedClientOrderTypes.indexOf(1) > -1">
+            <input
+              type="radio"
+              name="radio-group"
+              id="Self_Order"
+              value="1"
+              [disabled]="
+                (allOrderTypeDisable && filterSelection.orderType !== '1')  || (allowedOrderTypes && allowedOrderTypes.length && allowedOrderTypes.indexOf('1')<0)
+              "
+              [checked]="filterSelection.orderType === '1'"
+              (change)="changeOrderType($event)"
+            />
+            <label for="Self_Order">{{ getOrderTypeTitle('1') }}</label>
+          </li>
+          <li *ngIf="this.allowedClientOrderTypes.indexOf(2) > -1">
+            <input
+              type="radio"
+              name="radio-group"
+              id="Convention_Shipment"
+              value="2"
+              [disabled]="
+                (allOrderTypeDisable && filterSelection.orderType !== '2')  || (allowedOrderTypes && allowedOrderTypes.length && allowedOrderTypes.indexOf('2')<0)
+              "
+              [checked]="filterSelection.orderType === '2'"
+              (change)="changeOrderType($event)"
+            />
+            <label for="Convention_Shipment">{{ getOrderTypeTitle('2') }}</label>
+          </li>          
+          <li *ngIf="this.allowedClientOrderTypes.indexOf(3) > -1">
+            <input
+              type="radio"
+              name="radio-group"
+              id="Drop_Shipment_Retail"
+              value="3"
+              [disabled]="
+                (allOrderTypeDisable && filterSelection.orderType !== '3') || (allowedOrderTypes && allowedOrderTypes.length && allowedOrderTypes.indexOf('3')<0)
+              "
+              (change)="changeOrderType($event)"
+              [checked]="filterSelection.orderType === '3'"
+            />
+            <label for="Drop_Shipment_Retail">{{ getOrderTypeTitle('3') }}</label>
+          </li>
+          <li *ngIf="this.allowedClientOrderTypes.indexOf(4) > -1">
+            <input
+              type="radio"
+              name="radio-group"
+              id="Drop_Shipment_Vaccine"
+              value="4"
+              [disabled]="
+                (allOrderTypeDisable && filterSelection.orderType !== '4') || (allowedOrderTypes && allowedOrderTypes.length && allowedOrderTypes.indexOf('4')<0)
+              "
+              [checked]="filterSelection.orderType === '4'"
+              (change)="changeOrderType($event)"
+            />
+            <label for="Drop_Shipment_Vaccine"> {{ getOrderTypeTitle('4') }} </label>
+          </li>
+          <!-- // repSection =  true only for manager -->
+          <li *ngIf="repSection && this.allowedClientOrderTypes.indexOf(5) > -1">
+            <input
+              type="radio"
+              name="radio-group"
+              id="rep"
+              value="5"
+              (change)="changeOrderType($event)"
+              [disabled]="
+                (allOrderTypeDisable && filterSelection.orderType !== '5')  || (allowedOrderTypes && allowedOrderTypes.length && allowedOrderTypes.indexOf('5')<0)
+              "
+              [checked]="filterSelection.orderType === '5'"
+            />
+            <label for="rep">{{ getOrderTypeTitle('5') }}</label>
+          </li>
+          <ng-container *ngIf="filterSelection.orderType === '5' && repSection">
+            <div class="drop-btn" ngbDropdown (openChange)="openChange()">
+              <div ngbDropdownToggle >
+                <svg
+                  width="13"
+                  height="15"
+                  viewBox="0 0 13 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.04776 6.69805C4.5529 6.17724 3.83072 4.71153 4.10511 3.3348C4.23439 2.68543 4.57724 2.10031 5.0771 1.67596C5.57697 1.25161 6.20399 1.01337 6.85475 1.00055C7.5055 0.987722 8.14111 1.20108 8.65673 1.60542C9.17236 2.00976 9.5372 2.58093 9.69107 3.22472C10.0188 4.58617 9.33117 6.15857 7.78938 6.69345C7.88863 7.18064 7.98811 7.66824 8.08783 8.15625C8.26457 9.02307 8.45083 9.88819 8.61303 10.7582C8.67615 11.0964 8.55825 11.4046 8.29077 11.6221C7.97183 11.8813 7.63933 12.1237 7.30515 12.3621C7.11865 12.4952 6.90571 12.4896 6.72302 12.3621C6.37956 12.1232 6.03871 11.8771 5.7174 11.6092C5.40656 11.35 5.34964 10.9994 5.41681 10.6018C5.62284 9.37949 5.81172 8.15455 6.00727 6.93058C6.01942 6.85493 6.03347 6.78001 6.04776 6.69805ZM6.90523 1.77889C5.75193 1.78059 4.81086 2.74876 4.81276 3.91405C4.81491 5.08517 5.76027 6.04776 6.91143 6.0463C8.06639 6.0463 9.00747 5.07935 9.00485 3.89684C9.00318 2.73542 8.05234 1.77598 6.90571 1.77841L6.90523 1.77889ZM6.80162 6.82705C6.70873 7.40388 6.61822 7.96664 6.52723 8.5311C6.40528 9.28566 6.28476 10.0405 6.159 10.7943C6.13994 10.908 6.16543 10.9883 6.25618 11.0561C6.48102 11.2215 6.70611 11.3869 6.92691 11.5578C6.98836 11.6063 7.03028 11.6063 7.09174 11.5578C7.31611 11.3852 7.54429 11.2184 7.77152 11.0486C7.8456 10.9931 7.86822 10.9259 7.84822 10.8285C7.62797 9.75726 7.41011 8.68563 7.19463 7.61361C7.14128 7.35029 7.08697 7.08746 7.03362 6.82583L6.80162 6.82705Z"
+                    fill="#4A4A4A"
+                    stroke="#4A4A4A"
+                    stroke-width="0.3"
+                  />
+                  <path
+                    d="M4.83903 7.05369C4.57703 7.16668 4.29692 7.26876 4.03348 7.40357C3.19245 7.83322 2.642 8.53176 2.2902 9.40561C2.03829 10.0376 1.88558 10.706 1.83764 11.3863C1.79644 11.9333 1.78619 12.4828 1.76761 13.0312C1.76118 13.2211 1.77047 13.2235 1.95197 13.2235H11.8851C12.0485 13.2235 12.0532 13.2174 12.0551 13.0555C12.0637 12.2796 12.0163 11.5063 11.8679 10.7433C11.7514 10.1442 11.5697 9.56661 11.2848 9.02591C10.7787 8.06574 9.99863 7.44697 8.98801 7.11673C8.96919 7.11067 8.9499 7.1063 8.93179 7.09879C8.92536 7.09636 8.92274 7.08885 8.92274 7.08885L9.60801 6.51274C10.4655 6.86384 11.1717 7.42806 11.6969 8.22141C12.0813 8.80187 12.3338 9.44004 12.5082 10.117C12.7702 11.1342 12.8331 12.1693 12.8154 13.2131C12.8083 13.6369 12.4208 13.9989 11.9856 13.9994C10.9058 14.0004 9.82603 14.0004 8.74625 13.9994H1.88647C1.36722 13.9991 1.01018 13.6393 1.00256 13.1141C0.990888 12.3176 1.0159 11.5233 1.14547 10.7358C1.32697 9.62577 1.67639 8.58777 2.41215 7.71902C2.87399 7.17322 3.44278 6.7797 4.09494 6.50668C4.16639 6.47637 4.21165 6.4851 4.27072 6.54136C4.45746 6.71908 4.65396 6.88808 4.83903 7.05369Z"
+                    fill="#4A4A4A"
+                    stroke="#4A4A4A"
+                    stroke-width="0.3"
+                  />
+                </svg>
+                <span>{{
+                  selectedRep
+                    ? selectedRep?.firstName + " " + selectedRep?.lastName
+                    : ( "sideFilter.selectRep" | translate )
+                }}</span>
+              </div>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <!-- <div class="disable-li">
+                           <svg width="22" height="13" viewBox="0 0 22 13" fill="none"
+                               xmlns="http://www.w3.org/2000/svg">
+                               <path
+                                   d="M9.93599 0.5C9.89369 0.811792 8.89499 2.59269 8.85918 2.85663C8.82396 3.11622 8.79097 3.35941 8.7584 3.59945C8.67726 4.19752 8.59876 4.77606 8.4951 5.54012C7.99258 6.17168 11.1475 10.1948 10.4163 10.5C9.68509 10.8052 8.59489 12.0952 7.81245 12C7.26577 11.932 3.73589 7.18081 3.21185 7.35656C2.68781 7.53231 2.65701 6.11259 2.25126 6.5C2.0465 6.68872 1.29067 6 1.45196 5.18847L7.67305 11.6661C7.85433 11.5019 8.04866 11.3335 8.23386 11.1543C8.8383 10.5618 7.68948 5.74884 8.4951 5.54012C9.07781 5.40774 13.6659 5.43146 14.2587 5.5C15.4859 5.60454 15.8176 6.48237 16.6601 5.54012C17.1125 5.00915 16.0382 3.2907 16.6601 3C17.282 2.7093 18.8602 5.49914 19.5419 5.5C19.8862 5.5 20.8327 7.71501 19.9535 6.88833C19.9131 6.84081 19.8896 6.8123 19.8635 6.78514C18.0811 4.92688 16.6241 3.0297 14.8452 1.18049C14.829 1.16912 15.2076 1.06701 14.8036 1.12375C15.1138 1.00693 14.9827 0.846716 14.8036 0.914062C15.2963 1.01424 14.8853 1.01077 14.4663 1.06367C14.4941 0.346849 14.4941 1.01077 14.4941 1.01077C14.6245 0.775888 14.7549 0.534214 14.8853 0.287109C14.9095 0.305602 15.2192 0.5 14.9545 0.346849L21.3047 6.95622C21.3772 7.02012 21.4283 7.10641 21.4506 7.2026C21.4729 7.29878 21.4652 7.39985 21.4286 7.49116C21.3946 7.58346 21.3331 7.66195 21.253 7.71501C21.1729 7.76808 21.0785 7.79289 20.9838 7.78578C20.2209 7.8075 19.4566 7.8238 18.6936 7.85774C18.1924 7.87254 17.6993 7.99318 17.2442 8.21233C16.7891 8.43148 16.3815 8.74458 16.0461 9.13264C14.9545 10.3546 13.6124 10.9045 12.0174 10.7524C10.8436 10.6411 9.80935 10.9533 8.92379 11.7748C8.60817 12.068 8.28733 12.3572 7.9678 12.645C7.924 12.6925 7.87106 12.7298 7.81245 12.7544C7.75384 12.7791 7.69089 12.7906 7.62772 12.7881C7.56455 12.7857 7.50259 12.7694 7.44589 12.7403C7.3892 12.7112 7.33905 12.6699 7.29874 12.6193L0.494671 5.54012C0.441181 5.49444 0.398528 5.43654 0.370029 5.37091C0.34153 5.30529 0.327951 5.2337 0.330348 5.16172C0.332746 5.08975 0.351054 5.01931 0.383851 4.9559C0.416648 4.89248 0.46305 4.8378 0.519451 4.79609C0.8755 4.47024 1.22894 4.13895 1.59151 3.8226C2.5128 2.9929 3.71255 2.57739 4.92768 2.66719C5.38025 2.69298 5.83281 2.73779 6.28667 2.65633C7.12084 2.51382 7.53451 2 8.12471 1.61631C8.7149 1.23263 9.93599 0 9.93599 0.5Z"
+                                   fill="#4A4A4A" />
+                           </svg>
+                           My territory (L10100)
+                           </div> -->
+                <button
+                  ngbDropdownItem
+                  class="enabled-li-dropdown"
+                  *ngFor="let repItem of repsList" title="{{ repItem?.firstName }} {{ repItem?.lastName }}"
+                  (click)="selectRep(repItem)"
+                >
+                
+                  <span>{{ repItem?.firstName }} {{ repItem?.lastName }}</span>
+                </button>
+                <!-- <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Anna</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Kevin</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Julie</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Rose</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Stanley</span>
+                           </button> -->
+                <!-- <div class="disable-li">
+                           <svg width="22" height="13" viewBox="0 0 22 13" fill="none"
+                               xmlns="http://www.w3.org/2000/svg">
+                               <path
+                                   d="M8.82597 1.042L9.28635 1.86478C8.78383 2.49634 8.13756 2.98705 7.40637 3.29224C6.67518 3.59742 5.88228 3.7074 5.09984 3.61216C4.55316 3.54418 3.99883 3.59997 3.47479 3.77573C2.95075 3.95148 2.46938 4.24304 2.06364 4.63045C1.85887 4.81917 1.65151 5.00518 1.45196 5.18847L7.67305 11.6661C7.85433 11.5019 8.04866 11.3335 8.23386 11.1543C8.8383 10.5618 7.68948 5.74884 8.4951 5.54012C9.07781 5.40774 13.6659 5.43146 14.2587 5.5C15.4859 5.60454 15.8176 6.48237 16.6601 5.54012C17.1125 5.00915 16.0382 3.2907 16.6601 3C17.282 2.7093 18.8602 5.49914 19.5419 5.5C19.8862 5.5 20.8327 7.71501 19.9535 6.88833C19.9131 6.84081 19.8896 6.8123 19.8635 6.78514C18.0811 4.92688 16.6241 3.0297 14.8452 1.18049C14.829 1.16912 15.2076 1.06701 14.8036 1.12375C15.1138 1.00693 14.9827 0.846716 14.8036 0.914062C15.2963 1.01424 14.8853 1.01077 14.4663 1.06367C14.4941 0.346849 14.4941 1.01077 14.4941 1.01077C14.6245 0.775888 14.7549 0.534214 14.8853 0.287109C14.9095 0.305602 15.2192 0.5 14.9545 0.346849L21.3047 6.95622C21.3772 7.02012 21.4283 7.10641 21.4506 7.2026C21.4729 7.29878 21.4652 7.39985 21.4286 7.49116C21.3946 7.58346 21.3331 7.66195 21.253 7.71501C21.1729 7.76808 21.0785 7.79289 20.9838 7.78578C20.2209 7.8075 19.4566 7.8238 18.6936 7.85774C18.1924 7.87254 17.6993 7.99318 17.2442 8.21233C16.7891 8.43148 16.3815 8.74458 16.0461 9.13264C14.9545 10.3546 13.6124 10.9045 12.0174 10.7524C10.8436 10.6411 9.80934 10.9533 8.92378 11.7748C8.60816 12.068 8.28733 12.3572 7.9678 12.6451C7.92399 12.6925 7.87105 12.7298 7.81245 12.7544C7.75384 12.7791 7.69089 12.7906 7.62772 12.7881C7.56455 12.7857 7.50258 12.7694 7.44589 12.7403C7.3892 12.7112 7.33905 12.6699 7.29874 12.6193L0.494671 5.54012C0.441181 5.49444 0.398528 5.43654 0.370029 5.37091C0.34153 5.30529 0.327951 5.2337 0.330348 5.16172C0.332746 5.08975 0.351054 5.01931 0.383851 4.9559C0.416648 4.89248 0.46305 4.8378 0.519451 4.79609C0.8755 4.47024 1.22894 4.13895 1.59151 3.82261C2.5128 2.9929 3.71255 2.57739 4.92768 2.66719C5.38024 2.69298 5.8328 2.73779 6.28667 2.65633C7.12084 2.51382 7.53451 2 8.12471 1.61631C8.7149 1.23263 9.93599 0 9.93599 0.5Z"
+                                   fill="#4A4A4A" />
+                               <path
+                                   d="M6.09403 5.99696C6.09464 6.19496 6.03878 6.38869 5.93352 6.55361C5.82826 6.71852 5.67834 6.8472 5.50276 6.92332C5.32718 6.99945 5.13385 7.0196 4.94726 6.98122C4.76067 6.94284 4.58922 6.84766 4.45464 6.70775C4.32006 6.56783 4.22842 6.38947 4.19131 6.19528C4.1542 6.00108 4.17331 5.79979 4.24621 5.61691C4.31911 5.43403 4.44251 5.27779 4.60079 5.168C4.75907 5.05821 4.9451 4.9998 5.13529 5.00018C5.38925 5.00053 5.63273 5.10561 5.81242 5.29243C5.99211 5.47925 6.09337 5.73259 6.09403 5.99696Z"
+                                   fill="#4A4A4A" />
+                               <path
+                                   d="M11.8567 7.99696C11.8573 8.19496 11.8015 8.38869 11.6962 8.55361C11.591 8.71852 11.441 8.8472 11.2655 8.92332C11.0899 8.99945 10.8965 9.0196 10.71 8.98122C10.5234 8.94284 10.3519 8.84766 10.2173 8.70775C10.0828 8.56783 9.99111 8.38947 9.95401 8.19528C9.9169 8.00108 9.93601 7.79979 10.0089 7.61691C10.0818 7.43403 10.2052 7.27779 10.3635 7.168C10.5218 7.05821 10.7078 6.9998 10.898 7.00018C11.1519 7.00053 11.3954 7.10561 11.5751 7.29243C11.7548 7.47925 11.8561 7.73259 11.8567 7.99696Z"
+                                   fill="#4A4A4A" />
+                           </svg>
+                           
+                           Controlling territory (L20100)
+                           </div> -->
+                <!-- <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Lola</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Anna</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Kevin</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Julie</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Rose</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Stanley</span>
+                           </button> -->
+              </div>
+            </div>
+            <div class="drop-btn" ngbDropdown (openChange)="openChange()">
+              <div ngbDropdownToggle>
+                <svg
+                  class="d-ic"
+                  width="10"
+                  height="15"
+                  viewBox="0 0 10 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.6675 0.381348C7.54008 0.381348 9.65542 2.2221 9.97518 4.67816C10.0558 5.46199 9.93938 6.2532 9.63609 6.98298C9.19417 8.10536 8.65824 9.19013 8.03377 10.2262C7.26424 11.5531 6.42794 12.8456 5.54597 14.1054C5.24729 14.5316 4.76062 14.5333 4.46897 14.1054C3.17411 12.2406 1.94602 10.3362 0.944574 8.2978C0.568012 7.58115 0.282442 6.82214 0.0942217 6.03768C-0.0286962 5.45937 -0.0313759 4.86279 0.086342 4.28345C0.20406 3.70412 0.439767 3.15389 0.779423 2.66553C1.7633 1.16852 3.19871 0.431191 4.6675 0.381348ZM4.99956 12.7734C5.03646 12.7235 5.05754 12.6995 5.07335 12.6737C5.76382 11.5685 6.47889 10.4754 7.1395 9.35654C7.72677 8.39435 8.21242 7.37621 8.58896 6.31783C8.78728 5.79795 8.84773 5.23739 8.76466 4.68848C8.64668 3.96089 8.30921 3.28438 7.79551 2.74572C7.28181 2.20705 6.61532 1.83081 5.88154 1.66524C4.27922 1.32149 2.94747 1.81133 1.95129 3.08319C1.34691 3.85661 1.07283 4.75035 1.27136 5.71971C1.39824 6.26277 1.58071 6.79194 1.81601 7.29922C2.48189 8.81514 3.34981 10.2211 4.24408 11.6218C4.48654 11.9999 4.73778 12.3746 4.99956 12.7734Z"
+                    fill="#4A4A4A"
+                  />
+                  <path
+                    d="M7.72829 4.89794C7.73003 5.42576 7.57156 5.9422 7.27296 6.38182C6.97436 6.82144 6.54907 7.16445 6.05099 7.36738C5.55291 7.57031 5.00446 7.62403 4.47514 7.52173C3.94583 7.41942 3.45947 7.1657 3.0777 6.79272C2.69593 6.41973 2.43595 5.94428 2.33068 5.4266C2.22542 4.90892 2.27962 4.37233 2.48642 3.88481C2.69322 3.3973 3.0433 2.98082 3.4923 2.68814C3.94131 2.39546 4.46902 2.23977 5.00857 2.24079C5.72899 2.2417 6.41969 2.52183 6.92944 3.01985C7.43918 3.51786 7.72643 4.19319 7.72829 4.89794ZM6.52128 4.89794C6.51851 4.6047 6.42704 4.31882 6.2584 4.07636C6.08977 3.8339 5.85153 3.64571 5.57372 3.53552C5.29591 3.42533 4.99096 3.39808 4.69734 3.4572C4.40372 3.51633 4.13456 3.65917 3.92382 3.86773C3.71307 4.07629 3.57016 4.34122 3.51312 4.62912C3.45607 4.91702 3.48745 5.215 3.60328 5.48548C3.71911 5.75597 3.91421 5.98684 4.16399 6.149C4.41377 6.31116 4.70704 6.39734 5.00681 6.39667C5.20698 6.396 5.40505 6.35665 5.58963 6.28088C5.77421 6.20511 5.94167 6.09442 6.08239 5.95516C6.22312 5.8159 6.33433 5.65081 6.40965 5.46938C6.48497 5.28795 6.5229 5.09376 6.52128 4.89794Z"
+                    fill="#4A4A4A"
+                  />
+                </svg>
+                <span
+                  ><span>{{
+                    selectedTerritory
+                      ? selectedTerritory?.name
+                      : ( "sideFilter.selectTerritory" | translate )
+                  }}</span>
+                </span>
+              </div>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <!-- <div class="disable-li">
+                           <svg width="22" height="13" viewBox="0 0 22 13" fill="none"
+                               xmlns="http://www.w3.org/2000/svg">
+                               <path
+                                   d="M9.93599 0.5C9.89369 0.811792 8.89499 2.59269 8.85918 2.85663C8.82396 3.11622 8.79097 3.35941 8.7584 3.59945C8.67726 4.19752 8.59876 4.77606 8.4951 5.54012C7.99258 6.17168 11.1475 10.1948 10.4163 10.5C9.68509 10.8052 8.59489 12.0952 7.81245 12C7.26577 11.932 3.73589 7.18081 3.21185 7.35656C2.68781 7.53231 2.65701 6.11259 2.25126 6.5C2.0465 6.68872 1.29067 6 1.45196 5.18847L7.67305 11.6661C7.85433 11.5019 8.04866 11.3335 8.23386 11.1543C8.8383 10.5618 7.68948 5.74884 8.4951 5.54012C9.07781 5.40774 13.6659 5.43146 14.2587 5.5C15.4859 5.60454 15.8176 6.48237 16.6601 5.54012C17.1125 5.00915 16.0382 3.2907 16.6601 3C17.282 2.7093 18.8602 5.49914 19.5419 5.5C19.8862 5.5 20.8327 7.71501 19.9535 6.88833C19.9131 6.84081 19.8896 6.8123 19.8635 6.78514C18.0811 4.92688 16.6241 3.0297 14.8452 1.18049C14.829 1.16912 15.2076 1.06701 14.8036 1.12375C15.1138 1.00693 14.9827 0.846716 14.8036 0.914062C15.2963 1.01424 14.8853 1.01077 14.4663 1.06367C14.4941 0.346849 14.4941 1.01077 14.4941 1.01077C14.6245 0.775888 14.7549 0.534214 14.8853 0.287109C14.9095 0.305602 15.2192 0.5 14.9545 0.346849L21.3047 6.95622C21.3772 7.02012 21.4283 7.10641 21.4506 7.2026C21.4729 7.29878 21.4652 7.39985 21.4286 7.49116C21.3946 7.58346 21.3331 7.66195 21.253 7.71501C21.1729 7.76808 21.0785 7.79289 20.9838 7.78578C20.2209 7.8075 19.4566 7.8238 18.6936 7.85774C18.1924 7.87254 17.6993 7.99318 17.2442 8.21233C16.7891 8.43148 16.3815 8.74458 16.0461 9.13264C14.9545 10.3546 13.6124 10.9045 12.0174 10.7524C10.8436 10.6411 9.80935 10.9533 8.92379 11.7748C8.60817 12.068 8.28733 12.3572 7.9678 12.645C7.924 12.6925 7.87106 12.7298 7.81245 12.7544C7.75384 12.7791 7.69089 12.7906 7.62772 12.7881C7.56455 12.7857 7.50259 12.7694 7.44589 12.7403C7.3892 12.7112 7.33905 12.6699 7.29874 12.6193L0.494671 5.54012C0.441181 5.49444 0.398528 5.43654 0.370029 5.37091C0.34153 5.30529 0.327951 5.2337 0.330348 5.16172C0.332746 5.08975 0.351054 5.01931 0.383851 4.9559C0.416648 4.89248 0.46305 4.8378 0.519451 4.79609C0.8755 4.47024 1.22894 4.13895 1.59151 3.8226C2.5128 2.9929 3.71255 2.57739 4.92768 2.66719C5.38025 2.69298 5.83281 2.73779 6.28667 2.65633C7.12084 2.51382 7.53451 2 8.12471 1.61631C8.7149 1.23263 9.93599 0 9.93599 0.5Z"
+                                   fill="#4A4A4A" />
+                           </svg>
+                           My territory (L10100)
+                           </div> -->
+                <button
+                  ngbDropdownItem
+                  class="enabled-li-dropdown"
+                  *ngFor="let terItem of territoryList"
+                  (click)="selectTerritory(terItem)" [title]="terItem?.name"
+                >
+                  <span>{{ terItem?.name }}</span>
+                </button>
+                <!-- <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Lola</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Anna</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Kevin</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Julie</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Rose</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Stanley</span>
+                           </button> -->
+                <!-- <div class="disable-li">
+                           <svg width="22" height="13" viewBox="0 0 22 13" fill="none"
+                               xmlns="http://www.w3.org/2000/svg">
+                               <path
+                                   d="M8.82597 1.042L9.28635 1.86478C8.78383 2.49634 8.13756 2.98705 7.40637 3.29224C6.67518 3.59742 5.88228 3.7074 5.09984 3.61216C4.55316 3.54418 3.99883 3.59997 3.47479 3.77573C2.95075 3.95148 2.46938 4.24304 2.06364 4.63045C1.85887 4.81917 1.65151 5.00518 1.45196 5.18847L7.67305 11.6661C7.85433 11.5019 8.04866 11.3335 8.23386 11.1543C8.8383 10.5618 7.68948 5.74884 8.4951 5.54012C9.07781 5.40774 13.6659 5.43146 14.2587 5.5C15.4859 5.60454 15.8176 6.48237 16.6601 5.54012C17.1125 5.00915 16.0382 3.2907 16.6601 3C17.282 2.7093 18.8602 5.49914 19.5419 5.5C19.8862 5.5 20.8327 7.71501 19.9535 6.88833C19.9131 6.84081 19.8896 6.8123 19.8635 6.78514C18.0811 4.92688 16.6241 3.0297 14.8452 1.18049C14.829 1.16912 15.2076 1.06701 14.8036 1.12375C15.1138 1.00693 14.9827 0.846716 14.8036 0.914062C15.2963 1.01424 14.8853 1.01077 14.4663 1.06367C14.4941 0.346849 14.4941 1.01077 14.4941 1.01077C14.6245 0.775888 14.7549 0.534214 14.8853 0.287109C14.9095 0.305602 15.2192 0.5 14.9545 0.346849L21.3047 6.95622C21.3772 7.02012 21.4283 7.10641 21.4506 7.2026C21.4729 7.29878 21.4652 7.39985 21.4286 7.49116C21.3946 7.58346 21.3331 7.66195 21.253 7.71501C21.1729 7.76808 21.0785 7.79289 20.9838 7.78578C20.2209 7.8075 19.4566 7.8238 18.6936 7.85774C18.1924 7.87254 17.6993 7.99318 17.2442 8.21233C16.7891 8.43148 16.3815 8.74458 16.0461 9.13264C14.9545 10.3546 13.6124 10.9045 12.0174 10.7524C10.8436 10.6411 9.80934 10.9533 8.92378 11.7748C8.60816 12.068 8.28733 12.3572 7.9678 12.6451C7.92399 12.6925 7.87105 12.7298 7.81245 12.7544C7.75384 12.7791 7.69089 12.7906 7.62772 12.7881C7.56455 12.7857 7.50258 12.7694 7.44589 12.7403C7.3892 12.7112 7.33905 12.6699 7.29874 12.6193L0.494671 5.54012C0.441181 5.49444 0.398528 5.43654 0.370029 5.37091C0.34153 5.30529 0.327951 5.2337 0.330348 5.16172C0.332746 5.08975 0.351054 5.01931 0.383851 4.9559C0.416648 4.89248 0.46305 4.8378 0.519451 4.79609C0.8755 4.47024 1.22894 4.13895 1.59151 3.82261C2.5128 2.9929 3.71255 2.57739 4.92768 2.66719C5.38024 2.69298 5.8328 2.73779 6.28667 2.65633C7.12084 2.51382 7.88474 2.08344 8.45557 1.43438C8.57165 1.30132 8.69555 1.17777 8.82597 1.042Z"
+                                   fill="#4A4A4A" />
+                               <path
+                                   d="M6.09403 5.99696C6.09464 6.19496 6.03878 6.38869 5.93352 6.55361C5.82826 6.71852 5.67834 6.8472 5.50276 6.92332C5.32718 6.99945 5.13385 7.0196 4.94726 6.98122C4.76067 6.94284 4.58922 6.84766 4.45464 6.70775C4.32006 6.56783 4.22842 6.38947 4.19131 6.19528C4.1542 6.00108 4.17331 5.79979 4.24621 5.61691C4.31911 5.43403 4.44251 5.27779 4.60079 5.168C4.75907 5.05821 4.9451 4.9998 5.13529 5.00018C5.38925 5.00053 5.63273 5.10561 5.81242 5.29243C5.99211 5.47925 6.09337 5.73259 6.09403 5.99696Z"
+                                   fill="#4A4A4A" />
+                               <path
+                                   d="M11.8567 7.99696C11.8573 8.19496 11.8015 8.38869 11.6962 8.55361C11.591 8.71852 11.441 8.8472 11.2655 8.92332C11.0899 8.99945 10.8965 9.0196 10.71 8.98122C10.5234 8.94284 10.3519 8.84766 10.2173 8.70775C10.0828 8.56783 9.99111 8.38947 9.95401 8.19528C9.9169 8.00108 9.93601 7.79979 10.0089 7.61691C10.0818 7.43403 10.2052 7.27779 10.3635 7.168C10.5218 7.05821 10.7078 6.9998 10.898 7.00018C11.1519 7.00053 11.3954 7.10561 11.5751 7.29243C11.7548 7.47925 11.8561 7.73259 11.8567 7.99696Z"
+                                   fill="#4A4A4A" />
+                           </svg>
+                           
+                           Controlling territory (L20100)
+                           </div> -->
+                <!-- <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Lola</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Anna</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Kevin</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Julie</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Rose</span>
+                           </button>
+                           <button ngbDropdownItem class="enabled-li-dropdown">
+                           <span>Stanley</span>
+                           </button> -->
+              </div>
+            </div>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+    <div class="filter-box">
+      <div class="head">
+        <img [src]="'assets/img/sidebar/2.png'" alt="{{ productStatus.title }}" />
+        {{ productStatus.title }}
+      </div>
+      <div class="options">
+        <ul>
+          <li
+            *ngFor="
+              let prod of productStatus.values | noShowStatus: true;
+              let i = index
+            "
+          >
+            <input
+              type="checkbox"
+              name="radio-group"
+              id="che-one-{{ i }}"
+              [(ngModel)]="prod.checked"
+              [value]="prod?.value"
+              [checked]="prod?.checked"
+              (change)="changeProductStatus($event, i, prod.checked)"
+            />
+            <label for="che-one-{{ i }}">{{ prod?.title }}</label>
+            <!--No longer using [class]="prod?.class" -- text should be black in filters section-->
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="filter-box product-new">
+      <!-- <div class="head">
+            <img [src]="'assets/img/sidebar/2.png'" alt="Order Type:">
+            Product Status:
+            </div> -->
+      <div class="options m-remove">
+        <ul>
+          <li>
+            <input
+              type="checkbox"
+              name="radio-group"
+              id="isNew"
+              [(ngModel)]="filterSelection.isNew"
+              (change)="changeIsNew($event)"
+            />
+            <label for="isNew" class="new">{{
+              "sideFilter.newItemOnly.title" | translate
+            }}</label>
+          </li>
+        </ul>
+      </div>      
+      <div class="tagged {{ themeVar }}">
+        {{ "product.new" | translate }}
+      </div>
+    </div>
+    <div class="filter-box">
+      <div class="head">
+        <img [src]="'assets/img/sidebar/3.png'" alt="{{ 'sideFilter.downloadTitle' | translate }}" />
+        {{ "sideFilter.downloadTitle" | translate }}
+      </div>
+      <div class="bts">
+        <!-- <input type="checkbox" class="toggle toggle-custom" checked> -->
+        <input
+          id="isDownloadable"
+          type="checkbox"
+          class="switch"
+          [ngClass]="{'sel':filterSelection.isDownloadable}"
+          [(ngModel)]="filterSelection.isDownloadable"
+          (change)="changeIsDownloadable($event)"
+        />
+        <!-- <label for="s2">Switch</label> -->
+      </div>
+      <!-- <div class="options">
+            <ul>
+                <li>
+                    <input type="checkbox" name="newItemType">
+                    New Items Only
+                </li>
+            </ul>
+            </div> -->
+    </div>
+    <div class="filter-box">
+      <div class="head">
+        <img [src]="'assets/img/sidebar/4.png'" alt="{{ productTypes.title }}" />
+        {{ productTypes.title }}
+      </div>
+      <div class="options">
+        <ul>
+          <li *ngFor="let prod of productTypes.values; let i = index">
+            <input
+              type="checkbox"
+              name="radio-group"
+              id="PT-{{ i }}"
+              [(ngModel)]="prod.checked"
+              (change)="changeProductType()"
+            />
+            <label for="PT-{{ i }}">{{ prod?.title }}</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="filter-box" *ngIf="brands.length > 0">
+      <div class="head">
+        <img [src]="'assets/img/sidebar/4.png'" alt="{{ 'sideFilter.brandType' | translate }}" />
+        {{ "sideFilter.brandType" | translate }}:
+      </div>
+      <div class="options">
+        <ul>
+          <li *ngFor="let b of brands; let i = index">
+            <input
+              type="checkbox"
+              name="radio-group"
+              id="BT-{{ i }}"
+              [value]="b?.brandId"
+              [(ngModel)]="b.checked"
+              (change)="changeBrandType()"
+            />
+            <label for="BT-{{ i }}">{{ b?.brandName }}</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="filter-box ai-expert-wrapper" (click)="onAiExpertClick()">
+      <div class="head">
+        <img [src]="'assets/img/sidebar/circle-dashed.png'" alt="{{ 'sideFilter.downloadTitle' | translate }}" style="width: 13px; margin-right: 5px;" />
+        {{ "sideFilter.aiExpert" | translate }}
+      </div>
+      <div class="tagged {{ themeVar }}">
+        {{ "product.new" | translate }}
+      </div>
+    </div>
+  </div>
+</div>

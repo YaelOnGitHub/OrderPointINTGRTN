@@ -1,0 +1,155 @@
+<div>
+    <div class="modal-header">
+        <span class="close-icon" aria-label="Close" (click)="onCloseModal()" data-toggle="tooltip" data-placement="top"
+            title="Close">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                    fill="#555555" />
+            </svg>
+        </span>
+        <!-- "viewOrder": {
+            "headers": [
+                "NUMÉRO DE COMMANDE",
+                "Taper",
+                "Statut",
+                "Commandé le",
+                "Date d'expédition"
+            ],
+            "detailsHeaders": [
+                "Commander par",
+                "Expédition à",
+                "Suivi#",
+                "Promotionnel",
+                "Échantillons",
+                "CID/Identifiant d'employé"
+            ],
+            "totalItems": "Totale produits ",
+            "tracking": "Suivie"
+        }
+    }, -->
+
+        <div class="order-details-cell">
+            <div class="left-side">
+                <div class="orderID">{{ ('models.viewOrder.headers' | translate)[0] }}: <span>{{ ordersID }} </span>
+                </div>
+                <div class="orderTYPE">{{ ('models.viewOrder.headers' | translate)[1] }}: <span>{{
+                        ordersDetails?.orderType ? (ordersDetails?.orderedForRepId ? 'For a Rep' : ordersDetails?.orderType) : '-' }}</span></div>
+            </div>
+
+            <div class="right-side">
+                <table class="order-head">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span>{{ ('models.viewOrder.headers' | translate)[2] }}:</span>
+                            </td>
+                            <td>
+                                <span> {{ ordersDetails?.status ? ordersDetails?.status : '-' }} </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span>{{ ('models.viewOrder.headers' | translate)[3] }}:</span>
+                            </td>
+                            <td>
+                                <span> {{ ordersDetails?.orderedOn ? (ordersDetails?.orderedOn | date : 'MM/dd/YYYY') :
+                                    '-' }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="order-body">
+            <div class="order-details">
+                <table>
+                    <tbody>
+                        <tr class="bordered ordered-by">
+                            <td class="label"> {{ ('models.viewOrder.detailsHeaders' | translate)[0] }}</td>
+                            <td class="value"> {{ ordersDetails?.orderedBy ? ordersDetails?.orderedBy : '-' }} </td>
+                        </tr>
+                        <tr class="bordered">
+                            <td class="label"> {{ ('models.viewOrder.detailsHeaders' | translate)[1] }} </td>
+                            <td class="value"> {{
+                                ordersDetails?.shipToAddress | addressFormate}} </td>
+                        </tr>
+                        <!-- Removing tracking number from order header -->
+                        <!-- <tr class="bordered" *ngIf="sectionTypeHTML === 1">
+                            <td class="label"> {{ ('models.viewOrder.detailsHeaders' | translate)[2] }} </td>
+                            <td class="value trackNumber"> - </td>
+                        </tr> -->
+                        <tr>
+                            <td class="label"> {{ ('models.viewOrder.detailsHeaders' | translate)[3] }} </td>
+                            <td class="value"> {{ ordersDetails?.promotional ? ordersDetails?.promotional : '-' }} </td>
+                        </tr>
+
+                        <tr class="bordered p_remove">
+                            <td class="label"> {{ ('models.viewOrder.detailsHeaders' | translate)[4] }} </td>
+                            <td class="value"> {{ ordersDetails?.samples ? ordersDetails?.samples : '-' }} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="label"> {{ ('models.viewOrder.detailsHeaders' | translate)[5] }} </td>
+                            <td class="value"> {{ ordersDetails?.employeeId ? ordersDetails?.employeeId : '-' }} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="product-details" *ngIf="sectionTypeHTML === 1">
+                <div class="count">
+                    {{ ('models.viewOrder.totalItems' | translate) }}: {{ ordersDetails?.totalItems}}
+                </div>
+                <div class="product-box">
+                    <div class="item" *ngFor="let item of ordersDetails?.items">
+                        <!-- <div class="item-id">
+                            <span class="id-item"> ID {{ item.id }}</span>
+                        </div> -->
+                        <div class="item-img">
+                            <a [href]="item.imageUrl" target="_blank">
+                                <img [src]="item.imageUrl" alt="" [srcDefault]="'assets/img/home/Product_Default.svg'">
+                            </a>
+                        </div>
+                        <div class="item-details">
+                            <span>{{ item.name }} </span>
+                            <span>Qty: {{ item.quantity }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="track-details" *ngIf="sectionTypeHTML === 2">
+                <div class="count">
+                    {{ ('models.viewOrder.totalItems' | translate) }}: {{ ordersDetails?.trackingDetails.length}}
+                </div>
+                <div class="track">
+                    <div class="track-box" *ngFor="let td of trackingDetails">
+                        <table>                            
+                            <tr>
+                                <td class="label trackingnumberlabel" > {{ ('models.viewOrder.tracking' | translate) }}</td>
+                                <td class="value"><span class='trackingnumber' [innerHtml]="getTrackingLink(td)"></span></td>
+                            </tr>   
+                            <tr>
+                                <td class="label"> {{ ('models.viewOrder.status' | translate) }}</td>
+                                <td class="value"> {{ td.status }}</td>
+                            </tr>    
+                            <tr *ngIf="td.shipmentDate">
+                                <td class="label"> {{ ('models.viewOrder.headers' | translate)[4] }}</td>
+                                <td class="value"> {{ td.shipmentDate | date :
+                                    'MM/dd/YYYY' }}</td>
+                            </tr>
+                            <tr *ngIf="td.deliveredOn">
+                                <td class="label"> {{ ('models.viewOrder.deliveredOn' | translate) }}</td>
+                                <td class="value"> {{ td.deliveredOn | date :
+                                    'MM/dd/YYYY' }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

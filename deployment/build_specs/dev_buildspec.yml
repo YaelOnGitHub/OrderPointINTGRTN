@@ -1,0 +1,50 @@
+version: 0.2
+env:
+  variables:
+    CACHE_CONTROL: "86400"
+    BUILD_FOLDER: "dist"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+      - echo installing nodejs...
+      - npm install -g @angular/cli@13.1.2
+      - npm install
+      - ls
+      
+  pre_build:
+    commands:
+      - echo listing dependencies...
+      - node --version
+      - npm --version
+      - ng --version
+      - echo ${ENV}
+  build:
+    commands:
+      - echo building...
+      - ng build --configuration=${ENV}
+  
+  post_build:
+    commands:
+      - echo Copying the deployment files...
+      - cp ./deployment/app_specs/dev_appspec.yml ./dist/ti-frontend/appspec.yml
+      - mkdir -p ./dist/ti-frontend/deployment_scripts/
+      - cp ./deployment/deployment_scripts/dev_post_deployment.ps1 ./dist/ti-frontend/deployment_scripts/dev_post_deployment.ps1
+
+artifacts:
+  base-directory: 'dist/ti-frontend*'
+  discard-paths: no
+  files:
+    - "**/*"
+
+  secondary-artifacts:
+    FrontendArtifactsDev:
+      name: $(date +%Y-%m-%d)-$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      base-directory: 'dist/ti-frontend*'
+      discard-paths: no
+      files:
+        - "**/*"
+#cache:
+  #paths:
+    # - paths

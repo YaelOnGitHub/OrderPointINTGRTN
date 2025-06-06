@@ -1,0 +1,378 @@
+<div>
+  <div class="modal-header">
+    <span
+      class="close-icon"
+      aria-label="Close"
+      (click)="onCloseModal()"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="Close"
+    >
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+          fill="#555555"
+        />
+      </svg>
+    </span>
+  </div>
+  <form name="form" [formGroup]="form">
+    <div class="modal-body">
+      <div class="form-group row">
+        <label for="add1" class="col-sm-3 col-form-label"
+          >{{ ("models.addAddress.formFields" | translate)[0] }} :</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control ti-control"
+            formControlName="address1"
+          />
+
+          <ng-container *ngIf="f.address1.invalid && f.address1.touched">
+            <p class="invalid" *ngIf="f.address1.errors?.required">
+              {{
+                ("models.addAddress.formFields" | translate)[0] +
+                  ("models.addAddress.errors.required" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.address1.errors?.minlength">
+              {{
+                ("models.addAddress.formFields" | translate)[0] +
+                  ("models.addAddress.errors.minLength" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.address1.errors?.pattern">
+              {{
+                  ("models.addAddress.errors.patternSC" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.address1.errors?.maxlength">
+              {{
+                ("models.addAddress.formFields" | translate)[0] +
+                  ("models.addAddress.errors.maxLength" | translate)
+              }}
+            </p>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="add2" class="col-sm-3 col-form-label"
+          >{{ ("models.addAddress.formFields" | translate)[1] }} :</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control ti-control"
+            formControlName="address2"
+          />
+
+          <ng-container *ngIf="f.address2.invalid && f.address2.touched">
+            <p class="invalid" *ngIf="f.address2.errors?.required">
+              {{
+                ("models.addAddress.formFields" | translate)[1] +
+                  ("models.addAddress.errors.required" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.address2.errors?.pattern">
+              {{
+                  ("models.addAddress.errors.patternSC" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.address2.errors?.minlength">
+              {{
+                ("models.addAddress.formFields" | translate)[1] +
+                  ("models.addAddress.errors.minLength" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.address2.errors?.maxlength">
+              {{
+                ("models.addAddress.formFields" | translate)[1] +
+                  ("models.addAddress.errors.maxLength" | translate)
+              }}
+            </p>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="city" class="col-sm-3 col-form-label"
+          >{{ ("models.addAddress.formFields" | translate)[2] }} :</label
+        >
+        <div class="col-sm-9">
+          <input
+          tabindex="0"
+            type="text"
+            class="form-control ti-control"
+            formControlName="city"
+          />
+
+          <ng-container *ngIf="f.city.invalid && f.city.touched">
+            <p class="invalid" *ngIf="f.city.errors?.required">
+              {{
+                ("models.addAddress.formFields" | translate)[2] +
+                  ("models.addAddress.errors.required" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.city.errors?.pattern">
+              {{
+                  ("models.addAddress.errors.patternSC" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.city.errors?.minlength">
+              {{
+                ("models.addAddress.formFields" | translate)[2] +
+                  ("models.addAddress.errors.minLength" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.city.errors?.maxlength">
+              {{
+                ("models.addAddress.formFields" | translate)[2] +
+                  ("models.addAddress.errors.maxLength" | translate)
+              }}
+            </p>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="state" class="col-sm-3 col-form-label"
+          >{{ ("models.addAddress.formFields" | translate)[3] }} :</label
+        >
+        <div class="col-md-8">
+          <!-- <select class="dropdown" name="state" formControlName="state">
+            <option
+              *ngFor="let state of states[mod.country]"
+              [value]="state.value"
+            >
+              {{ state.text }}
+            </option>
+          </select> -->
+
+          <div class="quantity" ngbDropdown tabindex="0" #dropdownState
+          (openChange)="dropdownStateOpenChange($event)"
+          (keyup)="typeAheadStateKeyUp($event)">
+            <div class="item-selected" ngbDropdownToggle>
+              {{
+                selectedState.value && selectedState.text
+                  ? selectedState.text
+                  : ("models.addAddress.formFieldsDropdown.state" | translate)
+              }}
+            </div>
+            <div
+              ngbDropdownMenu
+              aria-labelledby="dropdownBasic1"
+              class="item-menu"
+            >
+              <button
+                ngbDropdownItem
+                type="button"
+                tabindex="0"
+                *ngFor="let state of states[countryValue]"
+                id="add-state-{{state.value}}"
+                class="item-num"
+                [ngClass]="{'selected':selectedState == state.value, 'highlight':typeAheadState.state?.value == state.value}"
+                (click)="selectState(state)"
+                #dropdownStateItems
+              >
+                <span>{{ state.text }}</span>
+              </button>
+            </div>
+          </div>
+
+          <ng-container *ngIf="f.state.invalid && f.state.touched">
+            <p class="invalid" *ngIf="f.state.errors?.required">
+              {{
+                ("models.addAddress.formFields" | translate)[3] +
+                  ("models.addAddress.errors.required" | translate)
+              }}
+            </p>
+          </ng-container>
+        </div>
+      </div>
+
+      <div
+        class="form-group row"
+        *ngIf="countryValue === '' || countryValue === 'US'"
+      >
+        <label for="state" class="col-sm-3 col-form-label"
+          >{{ ("models.addAddress.formFields" | translate)[5] }} :</label
+        >
+
+        <div class="col-md-8 row">
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control ti-control"
+              maxlength="5"
+              formControlName="zip" numericOnly
+            />
+          </div>
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control ti-control"
+              maxlength="4"
+              formControlName="zip4" numericOnly
+            />
+          </div>
+          <ng-container *ngIf="f.zip.invalid && f.zip.touched">
+            <p class="invalid" *ngIf="f.zip.errors?.required">
+              {{
+                ("models.addAddress.formFields" | translate)[5] +
+                  ("models.addAddress.errors.required" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.zip.errors?.pattern">
+              {{
+                ("models.addAddress.formFields" | translate)[5] +
+                  ("models.addAddress.errors.onlyNumber" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.zip.errors?.maxlength">
+              {{
+                ("models.addAddress.formFields" | translate)[5] +
+                  ("models.addAddress.errors.zip" | translate)
+              }}
+            </p>
+          </ng-container>
+          <ng-container *ngIf="f.zip4.invalid && f.zip4.touched">
+            <p class="invalid" *ngIf="f.zip4.errors?.required">
+              {{
+                ("models.addAddress.formFields" | translate)[7] +
+                  ("models.addAddress.errors.required" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.zip4.errors?.pattern">
+              {{
+                ("models.addAddress.formFields" | translate)[7] +
+                  ("models.addAddress.errors.onlyNumber" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.zip4.errors?.maxlength">
+              {{
+                ("models.addAddress.formFields" | translate)[7] +
+                  ("models.addAddress.errors.zip4MaxLength" | translate)
+              }}
+            </p>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="form-group row" *ngIf="countryValue === 'CA'">
+        <label for="state" class="col-sm-3 col-form-label"
+          >{{ ("models.addAddress.formFields" | translate)[5] }} :</label
+        >
+        <div class="col-md-8">
+          <input style="width:120px"
+            type="text"
+            class="form-control ti-control"
+            formControlName="zip"
+            maxlength="7"
+            uppercase
+            [regExpMatchOnly]="'a-zA-Z0-9 '"
+          />
+          <ng-container *ngIf="f.zip.invalid && f.zip.touched">
+            <p class="invalid" *ngIf="f.zip.errors?.required">
+              {{
+                ("models.addAddress.formFields" | translate)[5] +
+                  ("models.addAddress.errors.required" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.zip.errors?.pattern">
+              {{
+                ("models.addAddress.formFields" | translate)[5] +
+                  ("models.addAddress.errors.Canada" | translate)
+              }}
+            </p>
+            <p class="invalid" *ngIf="f.zip.errors?.maxlength">
+              {{
+                ("models.addAddress.formFields" | translate)[5] +
+                  ("models.addAddress.errors.zipMaxLength7" | translate)
+              }}
+            </p>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="Country" class="col-sm-3 col-form-label"
+          >{{ ("models.addAddress.formFields" | translate)[6] }} :</label
+        >
+        <div class="col-sm-9">
+          <!-- <select
+            class="dropdown"
+            [(ngModel)]="mod.country"
+            name="country"
+            #country="ngModel"
+          >
+            <option *ngFor="let country of countries" [value]="country.value">
+              {{ country.text }}
+            </option>
+          </select> -->
+          <div class="quantity" ngbDropdown>
+            <div class="item-selected" ngbDropdownToggle>
+              {{
+                selectedCountry.value && selectedCountry.text
+                  ? selectedCountry.text
+                  : ("models.addAddress.formFieldsDropdown.country" | translate)
+              }}
+            </div>
+            <div
+              ngbDropdownMenu
+              aria-labelledby="dropdownBasic1"
+              class="item-menu"
+            >
+              <button
+                ngbDropdownItem
+                type="button"
+                *ngFor="let country of countries"
+                class="item-num"
+                (click)="selectCountry(country)"
+              >
+                <span>{{ country.text }}</span>
+              </button>
+            </div>
+          </div>
+
+          <ng-container *ngIf="f.country.invalid && f.country.touched">
+            <p class="invalid" *ngIf="f.country.errors?.required">
+              {{
+                ("models.addAddress.formFields" | translate)[6] +
+                  ("models.addAddress.errors.required" | translate)
+              }}
+            </p>
+          </ng-container>
+        </div>
+      </div>
+      <div class="modal-footer mt-2">
+        <button
+          class="btn btn-ti-outline-normal"
+          type="button"
+          type="clear"
+          (click)="reset()"
+        >
+          {{ ("models.addAddress.buttons" | translate)[0] }}
+        </button>
+        <button
+          class="btn btn-ti-primary"
+          type="submit"
+          (click)="submitAddress()"
+        >
+          {{
+            !btn
+              ? ("models.addAddress.buttons" | translate)[1]
+              : ("models.addAddress.buttons" | translate)[2]
+          }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

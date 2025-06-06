@@ -1,0 +1,9 @@
+<div class="content" *ngIf="loadPage">
+    <!-- <app-header></app-header> -->
+    <app-main-header [typeUser]="'Normal User'"></app-main-header>
+    <div class="main-content">
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

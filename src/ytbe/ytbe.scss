@@ -1,0 +1,49 @@
+@import './_css/media';
+@import './_css/theming';
+@import './_css/scrollbars';
+@import './_css/forms';
+@import './_css/buttons';
+@import './_css/overlay';
+@import './_css/loading';
+@import './_css/toolbar';
+@import './_css/titlebar';
+@import './_css/modal';
+
+//Include all common mixins
+@mixin ytbe-common {
+  ul.y-menu {
+    &, & > li {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      box-sizing: border-box;
+      display: block;
+    }
+  }
+
+  @include ytbe-common-media;
+  @include ytbe-common-forms;
+  @include ytbe-common-buttons;
+  @include ytbe-common-modal;
+  @include ytbe-common-overlay;
+  @include ytbe-common-toolbar;
+  @include ytbe-common-titlebar;
+}
+
+//Include styles for all YTBE components
+@mixin ytbe-theme($theme) {
+  $status-ok: map-get($theme, status-ok);
+  .y-info {
+    padding: 3px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: ytbe-tint($status-ok, 50%);
+  }
+
+  @include ytbe-theme-loading($theme);
+  @include ytbe-theme-forms($theme);
+  @include ytbe-theme-buttons($theme);
+  @include ytbe-theme-modal($theme);
+  @include ytbe-theme-overlay($theme);
+  @include ytbe-theme-titlebar($theme);
+}

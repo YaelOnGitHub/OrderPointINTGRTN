@@ -1,0 +1,60 @@
+// Themes CSS Variables
+// @see https://material.io/develop/web/components/theme/
+
+$--theme-primary: --theme-primary;
+$--theme-secondary: --theme-secondary;
+$--theme-surface: --theme-surface;
+$--theme-background: --theme-background;
+$--theme-background-right: --theme-background-right;
+$--theme-on-primary: --theme-on-primary;
+$--theme-on-secondary: --theme-on-secondary;
+$--theme-on-surface: --theme-on-surface;
+$--theme-input-border: --theme-input-border;
+$--theme-input-border-pt2: --theme-input-border-pt2;
+$--theme-background-shadow: --theme-background-shadow;
+$--theme-background-Imp-Circle: --theme-background-Imp-Circle;
+
+$--theme-background-p1: --theme-background-p1;
+
+// Equivalent to:
+// --theme-primary: #d75893;
+// --theme-secondary: #9b4dca;
+
+$theme-map-light: (
+    $--theme-primary: #d75893,
+    $--theme-secondary: #f36633,
+    $--theme-surface: #fff,
+    $--theme-background: #fafafa,
+    $--theme-background-Imp-Circle:#FFCDB0,
+    $--theme-background-right: #f7e1a3,
+    $--theme-on-primary: #fff,
+    $--theme-on-secondary: #fff,
+    $--theme-on-surface: #e65e1d,
+    $--theme-input-border: #4a4a4a,
+    $--theme-input-border-pt2: #847979,
+    $--theme-background-shadow: #e65e1d,
+    $--theme-background-p1: #fde7df,
+);
+
+// Override the light theme
+$theme-map-dark: (
+    $--theme-primary: #d75893,
+    $--theme-secondary: #00008b,
+    $--theme-surface: #fff,
+    $--theme-background: red,
+    $--theme-background-Imp-Circle:#869fbd,
+    $--theme-background-right: #4f4f61,
+    $--theme-on-primary: #fff,
+    $--theme-on-secondary: #fff,
+    $--theme-on-surface: #00008b90,
+    $--theme-input-border: #456386,
+    $--theme-input-border-pt2: #01A0E6,
+    $--theme-background-shadow: #bfbfe2,
+    $--theme-background-p1: #e5dee9,
+);
+
+$theme-transition-duration: 1500ms;
+
+// Other Variables
+$max-width: 750px;
+$icon-size: 1.5em;

@@ -1,0 +1,45 @@
+.y-panel {
+  display: block;
+  box-sizing: border-box;
+
+  & > .y-title {
+    font-weight: normal;
+    position: relative;
+  }
+
+  & > .y-content-container {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex: 1 1 auto;
+
+    & > .y-content {
+      display: block;
+      position: relative;
+    }
+  }
+
+  &.y-collapsible {
+    & > .y-titlebar > .y-title {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .icon-expanded::before,
+    .icon-collapsed::before {
+      padding: 0;
+    }
+  }
+  /* Handle full-page panel */
+  &.y-full-page {
+    display: flex;
+
+    & > .y-content-container {
+
+      & > .y-content {
+        flex: 1 1 auto;
+        overflow: auto;
+      }
+    }
+  }
+}

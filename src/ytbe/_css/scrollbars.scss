@@ -1,0 +1,97 @@
+@import 'theming';
+
+//Scrollbars Theme
+@mixin ytbe-theme-scrollbars($theme) {
+  $primary: map-get($theme, primary);
+  $secondary: map-get($theme, secondary);
+
+  ::-webkit-scrollbar {
+    height: 16px;
+    width: 16px;
+  }
+
+  ::-webkit-scrollbar:disabled {
+    display: none;
+  }
+
+  ::-webkit-scrollbar-button {
+    background-color: ytbe-color($secondary, 50);
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  /*::-webkit-scrollbar-button:horizontal:increment {
+    background-image: url('https://prod.msocdn.com/18.5.7.6/en-US/Images/scrollbar/arrow_staticright_16.png');
+    background-position: center;
+    height: 18px;
+    width: 18px
+  }
+  ::-webkit-scrollbar-button:horizontal:decrement {
+    background-image: url('https://prod.msocdn.com/18.5.7.6/en-US/Images/scrollbar/arrow_staticleft_16.png');
+    background-position: center;
+    height: 18px;
+    width: 18px
+  }
+  ::-webkit-scrollbar-button:horizontal:increment:hover {
+    background-image: url('https://prod.msocdn.com/18.5.7.6/en-US/Images/scrollbar/arrow_hoverright_16.png');
+    background-position: center;
+    height: 18px;
+    width: 18px
+  }
+  ::-webkit-scrollbar-button:horizontal:decrement:hover {
+    background-image: url('https://prod.msocdn.com/18.5.7.6/en-US/Images/scrollbar/arrow_hoverleft_16.png');
+    background-position: center;
+    height: 18px;
+    width: 18px
+  }
+  ::-webkit-scrollbar-button:vertical:increment {
+    background-image: url('https://prod.msocdn.com/18.5.7.6/en-US/Images/scrollbar/arrow_staticdown_16.png');
+    background-position: center;
+    height: 18px;
+    width: 18px
+  }
+  ::-webkit-scrollbar-button:vertical:decrement {
+    background-image: url('https://prod.msocdn.com/18.5.7.6/en-US/Images/scrollbar/arrow_staticup_16.png');
+    background-position: center;
+    height: 18px;
+    width: 18px
+  }
+  ::-webkit-scrollbar-button:vertical:increment:hover {
+    background-image: url('https://prod.msocdn.com/18.5.7.6/en-US/Images/scrollbar/arrow_hoverdown_16.png');
+    background-position: center;
+    height: 18px;
+    width: 18px
+  }
+  ::-webkit-scrollbar-button:vertical:decrement:hover {
+    background-image: url('https://prod.msocdn.com/18.5.7.6/en-US/Images/scrollbar/arrow_hoverup_16.png');
+    background-position: center;
+    height: 18px;
+    width: 18px
+  }*/
+  ::-webkit-scrollbar-track {
+    background-color: ytbe-color($secondary, 50);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 9px;
+    border: solid 4px ytbe-color($secondary, 50);
+    background-color: ytbe-color($primary);
+  }
+
+  ::-webkit-scrollbar-thumb:vertical {
+    min-height: 50px
+  }
+
+  ::-webkit-scrollbar-thumb:horizontal {
+    min-width: 50px
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    border-radius: 9px;
+    border: solid 4px ytbe-color($secondary, 50);
+    background-color: ytbe-color($secondary);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background-color: ytbe-color($secondary, accent);
+  }
+}

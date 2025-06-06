@@ -1,0 +1,85 @@
+@import 'theming';
+
+$y-modal-radius: 3px !default;
+
+@mixin ytbe-common-modal {
+  .y-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+  }
+
+  .y-modal-container {
+    z-index: 2;
+    min-width: 200px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+
+    .y-content {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      overflow: auto;
+    }
+    //Modal actions container
+    .y-modal-actions {
+      padding: $y-icon-size/2;
+      height: $y-icon-size*2+$y-icon-size;
+      line-height: $y-icon-size*2+$y-icon-size;
+      margin-top: 0;
+    }
+    // Handle nested titlebar and toolbar
+    .y-content {
+      padding: $y-icon-size/2;
+
+      & > .y-content {
+        margin: 0 (-$y-icon-size/2) 0 (-$y-icon-size/2);
+        overflow: auto;
+      }
+
+      & > .y-modal-titlebar {
+        margin: (-$y-icon-size/2) (-$y-icon-size/2) 0 (-$y-icon-size/2);
+      }
+
+      & > .y-modal-actions {
+        margin: 0 (-$y-icon-size/2) (-$y-icon-size/2) (-$y-icon-size/2);
+      }
+
+      & > .y-modal-titlebar {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+  @mixin ytbe-theme-modal($theme) {
+    ytbe-modal {
+      .y-modal-container {
+        $primary: map-get($theme, primary);
+        $secondary: map-get($theme, secondary);
+        background: #fff;
+        //border: 1px solid ytbe-color($primary, 300);
+        box-shadow: 0 5px 50px 0 ytbe-color($primary, darker);
+        border-radius: $y-modal-radius;
+        overflow: hidden;
+
+        .y-content {
+          ytbe-modal-actions {
+          }
+        }
+
+        //Style modal actions
+        .y-modal-actions {
+          background: ytbe-color($primary, 100);
+        }
+      }
+    }
+  }

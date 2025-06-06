@@ -1,0 +1,60 @@
+textarea{
+    height: 22px;
+    width: 100%;
+    color: #4A4A4A;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    resize: none;
+    overflow-y: hidden;
+    padding: 0;
+    margin-right: 12px;
+    line-height: 22px;
+    box-sizing: border-box;
+    display: block;
+    max-height: 100px;
+    min-height: 24px;
+}
+
+textarea:focus {
+    overflow-y: auto;
+}
+
+textarea::placeholder{color: #9E9E9E;}
+
+.focus-border {
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition: border-color 0.2s ease;
+    box-shadow: 0px 0px 2px 0px grey;
+    min-height: 50px;
+    max-height: 128px;
+    overflow: hidden;
+}
+
+.focus-border:focus-within {
+    border-color: #08A8EE;
+    box-shadow: none;
+}
+
+svg{
+    cursor: pointer;
+}
+ 
+.custom-scrollbar {
+    &::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 3px;
+    }
+}
+
+

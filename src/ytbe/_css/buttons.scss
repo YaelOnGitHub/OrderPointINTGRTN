@@ -1,0 +1,148 @@
+@import 'theming';
+@import 'icons';
+
+//Form Variables
+$y-form-control-padding: $y-icon-size/2 !default;
+$y-form-control-radius: 3px !default;
+$y-form-control-spacing: 6px !default;
+$y-btn-height: $y-icon-size*2 - 4px !default;
+
+@mixin ytbe-common-buttons {
+  .y-menu {
+    .y-btn {
+      display: flex;
+    }
+  }
+
+  .y-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    align-content: center;
+    padding: 0 $y-form-control-padding; /* Left/right padding */
+    height: $y-btn-height;
+    border-radius: $y-form-control-radius;
+    font-size: 1em;
+    border: none; // Get rid of default inset border
+    margin-right: $y-form-control-spacing; // Space buttons apart
+    cursor: pointer;
+    box-sizing: border-box;
+
+    &:last-child {
+      margin-right: 0;
+    }
+    //Ripple effect
+    & > .y-ripple {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      z-index: 1;
+
+      & > div {
+        position: absolute;
+        box-sizing: border-box;
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border-radius: 50%;
+        opacity: 0.5;
+      }
+    }
+  }
+  //Handle icon applied to button
+  @include ytbe-sel-icons('.y-btn') {
+    padding: 0;
+  }
+  //Handle icon applied to button that has text
+  @include ytbe-sel-icons('.y-btn-text') {
+    padding: 0 $y-form-control-padding 0 0;
+  }
+
+  @include ytbe-sel-icons('.y-btn-text > :first-child') {
+    padding: 0 $y-form-control-padding 0 0;
+  }
+
+  @include ytbe-sel-icons('.y-btn-text > :last-child') {
+    padding: 0 0 0 $y-form-control-padding;
+  }
+
+  @include ytbe-sel-icons('.y-btn-text.y-btn-ripple > :nth-last-child(2)') { /* Handle last icon when using button ripple effect */
+    padding: 0 0 0 $y-form-control-padding;
+  }
+}
+@mixin ytbe-theme-buttons($theme) {
+  $primary: map-get($theme, primary);
+  $secondary: map-get($theme, secondary);
+
+  //Buttons
+  .y-btn-basic {
+    background-color: ytbe-color($secondary);
+    color: ytbe-color($secondary, default-contrast);
+
+    &:hover {
+      background-color: ytbe-color($secondary, 400);
+    }
+
+    &[disabled] {
+      background-color: ytbe-color($secondary, 200);
+    }
+    //Primary buttons
+    &.y-btn-primary {
+      background-color: ytbe-color($primary, accent);
+      color: ytbe-color($primary, accent-contrast);
+
+      &:hover {
+        background-color: ytbe-color($primary, A150);
+      }
+
+      &[disabled] {
+        background-color: ytbe-color($secondary, 200);
+      }
+    }
+  }
+  //Button style using outline or flat
+  .y-btn-outline,
+  .y-btn-flat {
+    background-color: transparent;
+    color: ytbe-color($secondary);
+
+    &:hover:not([disabled]) {
+      background-color: ytbe-color($secondary, 100);
+    }
+
+    &[disabled] {
+      color: ytbe-color($secondary, 200);
+    }
+
+    &.y-btn-primary {
+      color: ytbe-color($primary, accent);
+
+      &:hover {
+        background-color: ytbe-color($primary, A5);
+      }
+
+      &[disabled] {
+        color: ytbe-color($secondary, 200);
+      }
+    }
+  }
+
+  .y-btn-outline {
+    border: 1px solid ytbe-color($secondary);
+
+    &[disabled] {
+      border: 1px solid ytbe-color($secondary, 200);
+    }
+
+    &.y-btn-primary {
+      border: 1px solid ytbe-color($primary, accent);
+
+      &[disabled] {
+        border: 1px solid ytbe-color($secondary, 200);
+      }
+    }
+  }
+}

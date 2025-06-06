@@ -1,0 +1,16 @@
+@import 'theming';
+
+// Nav Theme
+@mixin ytbe-theme-loading($theme) {
+  $primary: map-get($theme, primary);
+  $secondary: map-get($theme, secondary);
+
+  .y-loading {
+    color: ytbe-color($primary, accent);
+
+    // Overlay - Overriden for Loading
+    .y-overlay {
+      background-color: ytbe-color($primary, default-contrast);
+    }
+  }
+}

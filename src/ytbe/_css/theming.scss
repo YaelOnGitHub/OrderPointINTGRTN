@@ -1,0 +1,154 @@
+//Slightly lighten a color
+//@access public
+//@param {Color} $color - color to tint
+//@param {Number} $percentage - percentage of `$color` in returned color
+//@return {Color}
+@function ytbe-tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+//Slightly darken a color
+//@access public
+//@param {Color} $color - color to shade
+//@param {Number} $percentage - percentage of `$color` in returned color
+//@return {Color}
+@function ytbe-shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+//Extracts a color from the specified Palette
+//@access public
+//@param {Map} $palette - Palette from which to extract
+//@param {String} $hue - Hue to extract
+//@return {Color}
+@function ytbe-color($palette, $hue: default) {
+  @return map-get($palette, $hue);
+}
+
+//Extracts a contrast color from the specified Palette
+//@access public
+//@param {Map} $palette - Palette from which to extract
+//@param {String} $hue - Hue to extract
+//@return {Color}
+@function ytbe-contrast($palette, $hue: default) {
+  @return ytbe-color(map-get($palette, contrast), $hue);
+}
+
+//Create a color palette from Hex Color Values.  Includes shading values in increments of 50 from 50 to 900.
+//@access public
+//@param {Color} $color - Primary color for the palette
+//@param {Color} $accent-color - Accent color for the palette
+//@param {Number} adj-percentage - Percentage by which to adjust the color for each shading
+//@return {Map}
+@function ytbe-palette-from-colors($color, $accent-color, $adj-percentage) {
+  $result:();
+  $contrast:();
+
+  //Create primary color list
+  @for $v from 1 through 9*2 {
+    $i: $v*50; //50, 100, 150, 200, etc.
+    $curr-adj: abs(500-$i)/100*$adj-percentage;
+    @if ($curr-adj > 100%) {
+      $curr-adj: 100%;
+    } @else if ($curr-adj < 0%) {
+      $curr-adj: 0%;
+    }
+    @if ($i < 500) {
+      $result: map_merge($result, ($i: ytbe-tint($color, $curr-adj)));
+    } @elseif ($i > 500){
+      $result: map_merge($result, ($i: ytbe-shade($color, $curr-adj)));
+    } @else {
+      $result: map_merge($result, ($i: $color)); //Default color
+    }
+    $contrast: map_merge($contrast, ($i: white)); //TODO: Implement constrast colors
+  }
+  $result: map_merge($result, (50: ytbe-tint(ytbe-color($result, 100), 50%)));
+  $contrast: map_merge($contrast, (50: white)); //TODO: Implement constrast colors
+
+  //Create accent color list
+  $accents: 5, 10, 50, 100, 150, 200, 300, 400, 500, 600, 700;
+  @each $i in $accents {
+    $curr-adj: abs(200-$i)/100*$adj-percentage*2;
+    @if ($curr-adj > 100%) {
+      $curr-adj: 100%;
+    }
+    @else if ($curr-adj < 0%) {
+      $curr-adj: 0%;
+    }
+    @if ($i < 200) {
+      $result: map_merge($result, ('A#{$i}': ytbe-tint($accent-color, $curr-adj)));
+    }
+    @elseif ($i > 200) {
+      $result: map_merge($result, ('A#{$i}': ytbe-shade($accent-color, $curr-adj)));
+    }
+    @else {
+      $result: map_merge($result, ('A#{$i}': $accent-color)); //Accent color
+    }
+    $contrast: map_merge($contrast, ('A#{$i}': white)); //TODO: Implement constrast colors
+  }
+
+  $result: map_merge($result, (contrast: $contrast)); //Contrast
+
+  @return ytbe-palette($result);
+}
+
+
+//Create a color palette from a Base Palette Object.  Result is compatible with Angular Material Palettes.
+//@access public
+//@param {Color} $base-palette - Base palette object from which to constract the palette
+//@param {Number} $default - Default color hue - Defaults to 500
+//@param {Number} $lighter - Lighter color hue - Defaults to 100
+//@param {Number} $darker - Darker color hue - Defaults to 700
+//@param {Number} $accent - Accent color hue - Defaults to A200
+//@return {Map}
+@function ytbe-palette($base-palette, $default: 500, $lighter:100, $darker:700, $accent:A200) {
+
+  //Create contrast entries for default, ligher, darker, and accent
+  $contrast: map-get($base-palette, contrast);
+  $contrast: map_merge($contrast, (
+    default: map-get($contrast, $default),
+    lightest: map-get($contrast, 50),
+    lighter: map-get($contrast, $lighter),
+    darker: map-get($contrast, $darker),
+    darkest: map-get($contrast, 500),
+    accent: map-get($contrast, $accent)
+  ));
+
+  $result: map_merge($base-palette, (
+    default: map-get($base-palette, $default),
+    lightest: map-get($base-palette, 50),
+    lighter: map-get($base-palette, $lighter),
+    darker: map-get($base-palette, $darker),
+    darkest: map-get($base-palette, 500),
+    accent: map-get($base-palette, $accent),
+    contrast: $contrast
+  ));
+
+  //Create entries in dictionary root in form of 500-contrast for compatibility with Angular Material
+  @each $key, $val in $result {
+    $result: map_merge($result, (
+      '#{$key}-contrast': ytbe-contrast($result, $key)
+      ));
+  }
+  
+  @return $result;
+}
+
+
+//Create a Theme from the specified color palettes.  This result is NOT compatible with Angular Material Themes.
+//@access public
+//@param {Palette} $primary - Primary palette
+//@param {Palette} $secondary - Secondary palette
+//@param {Color} $status-critical - Critical color
+//@param {Color} $status-warn - Warn color
+//@param {Color} $status-ok - OK color
+//@return {Map}
+@function ytbe-theme($primary, $secondary, $status-critical: red, $status-warn:orange, $status-ok: green) {
+  @return (
+    primary: $primary,
+    secondary: $secondary,
+    status-critical: $status-critical,
+    status-warn: $status-warn,
+    status-ok: $status-ok
+  );
+}

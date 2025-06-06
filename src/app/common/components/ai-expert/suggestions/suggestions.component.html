@@ -1,0 +1,28 @@
+<!--Suggestions-->
+<article class="suggestions-container" [class.fade-out]="isFadingOut" [class.hidden]="isHidden">
+    <div class="suggestions-grid">
+      <div class="suggestions-row">
+        <section class="suggestion" (click)="handleSuggestionClick('Do you have product Y?')">
+          <h4>Do you have product Y?</h4>
+          <p>for a pharmacy company</p>
+        </section>
+
+        <section class="suggestion" (click)="handleSuggestionClick('How often can I place an order?')">
+          <h4>How often can I place an order?</h4>
+          <p>statuses</p>
+        </section>
+      </div>
+
+      <div class="suggestions-row">
+        <section class="suggestion" (click)="handleSuggestionClick('When did I last place an order?')">
+          <h4>When did I last place an order?</h4>
+          <p>for whom</p>
+        </section>
+
+        <section class="suggestion" (click)="handleSuggestionClick('Which products are my top sellers?')">
+          <h4>Which products are my top sellers?</h4>
+          <p>among doctors</p>
+        </section>
+      </div>
+    </div>
+</article>

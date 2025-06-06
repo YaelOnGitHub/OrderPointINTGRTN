@@ -1,0 +1,122 @@
+@import "variables";
+@import "mixins";
+
+input[type="radio"],
+input[type="checkbox"] {
+    padding: 0;
+}
+
+// rep
+.drop-btn,
+.dropdown {
+    background: #ffffff;
+    border: 1px solid #c4c4c4;
+    box-sizing: border-box;
+    border-radius: 25px;
+    padding: 4px 10px;
+    &.shi
+    // display: flex;
+    // align-items: center;
+    svg.d-ic {
+        margin-right: 6px !important;
+    }
+    svg.drop-ic {
+        margin-left: auto;
+    }
+    span {
+        font-family: Lato;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        color: #4a4a4a;
+        cursor: pointer;
+        padding-left: 6px;
+    }
+
+    margin-bottom: 18px;
+
+    &::before {
+        background-image: url(../../../../assets/img/drop.svg);
+    }
+    &:hover {
+        background: #c4c4c421;
+    }
+}
+
+.dropdown-menu {
+    padding: 0;
+    max-height: 500px;
+    overflow-y: auto;
+    margin: 5px 0 0 30px;
+    max-width: 225px;
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar {
+        width: 4px;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #e6e5e5;
+    }
+}
+
+.disable-li {
+    background: #f5f4f4;
+    border: 1px solid #e5e5e5;
+    padding: 8px;
+    border-radius: 10px 10px 0 0;
+    .disable-li {
+        &:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+    }
+}
+
+.enabled-li-dropdown {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    color: #4a4a4a;
+
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    &:hover {
+        background: theme-var(--theme-background-p1);
+        color: #fff;
+    }
+}
+
+.filter-box.product-new {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .options {
+        margin-right:-34px;
+    }
+    .tagged {
+        margin-left:auto;
+    }
+}
+
+
+.ai-expert-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all ease 300ms;
+}
+
+.ai-expert-wrapper:hover{
+    background-color: #f2f2f2;
+}

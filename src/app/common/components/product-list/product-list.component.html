@@ -1,0 +1,272 @@
+<screen-size-detector></screen-size-detector>
+<div class="container-fluid product-page">
+  <div class="row mg-6">
+    <div class="col-6">
+      <div class="filter-details">
+        <div class="filter">
+          <div class="title">
+            {{ totalItems }} {{ "productPage.result" | translate }},
+            <span>{{ "productPage.sorted.label" | translate }}</span>
+          </div>
+          <!-- <div class="filterBy" (click)="drop = !drop">
+                   <select href="javascript:void(0)" [(ngModel)]="selectedStatus"> Availability <span
+                           class="drop" [class.-up]="drop"></span>
+                       <option *ngFor="let s of productStatus" [value]="s.value">{{ s.title }}</option>
+                   </select>
+                   </div> -->
+          <div class="filterBy" ngbDropdown>
+            <span ngbDropdownToggle>{{
+              ("productPage.sorted.values" | translate)[0]
+            }}</span>
+            <svg
+              width="5"
+              height="3"
+              viewBox="0 0 5 3"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M2.5 3L0.334936 0L4.66506 0L2.5 3Z" fill="#4A4A4A" />
+            </svg>
+            <div
+              ngbDropdownMenu
+              aria-labelledby="dropdownBasic1"
+              class="item-menu"
+            >
+              <button
+                ngbDropdownItem
+                class="item-num"
+                *ngFor="let s of productSort"
+                (click)="selectSort(s)"
+              >
+                <span>{{ ("productPage.sorted.values" | translate)[0] }}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="search-details">
+        <input
+          type="text"
+          [placeholder]="'productPage.searchPlaceholder' | translate"
+          [(ngModel)]="pageRequest.search"
+          (keydown)="searchTitleKeyUpHandler($event)"
+        />
+        <div class="clear-search" *ngIf="pageRequest.search">
+            <img
+              [src]="'assets/img/home/close.png'"
+              alt="Close Icon"
+              class="close"
+              (click)="toastShow = false; pageRequest.search='';searchTitleClickHandler($event);"
+            />
+        </div>
+        <!-- <img [src]="'assets/img/home/search.png'" alt="Search Icon" > -->
+        <svg
+          class="with-icon"
+          width="17"
+          height="17"
+          viewBox="0 0 17 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          (click)="searchTitleClickHandler($event)"
+        >
+          <path
+            d="M16.7296 15.2779L10.9562 10.1815C10.821 10.0624 10.6859 9.94317 10.5561 9.81951C10.5392 9.80363 10.5223 9.78825 10.5054 9.77305C12.4715 7.43569 12.3551 3.94199 10.1552 1.74215C9.03956 0.626658 7.52648 0 5.94881 0C4.37113 0 2.85806 0.626658 1.74238 1.74215C-0.580792 4.06548 -0.580792 7.83218 1.74238 10.155C2.79448 11.2071 4.20264 11.8268 5.68912 11.8918C7.17561 11.9568 8.63249 11.4625 9.77244 10.5062C9.78747 10.5231 9.80268 10.54 9.81839 10.5555C9.93782 10.6812 10.053 10.8108 10.1677 10.9409L15.2778 16.7297C15.2963 16.7511 15.3161 16.7715 15.3369 16.7907C15.7047 17.1196 16.3375 17.0421 16.6897 16.6893C17.042 16.3371 17.1195 15.7043 16.7911 15.3365C16.7717 15.3158 16.7512 15.2963 16.7296 15.2779ZM2.33938 9.55817C1.8654 9.08418 1.48941 8.52148 1.23289 7.90219C0.976376 7.2829 0.844347 6.61915 0.844347 5.94883C0.844347 5.27851 0.976376 4.61476 1.23289 3.99547C1.48941 3.37618 1.8654 2.81348 2.33938 2.33949C2.81337 1.86551 3.37607 1.48952 3.99536 1.233C4.61465 0.976484 5.27841 0.844456 5.94872 0.844456C6.61904 0.844456 7.28279 0.976484 7.90208 1.233C8.52137 1.48952 9.08408 1.86551 9.55806 2.33949C10.032 2.81348 10.408 3.37618 10.6645 3.99547C10.9211 4.61476 11.0531 5.27851 11.0531 5.94883C11.0531 6.61915 10.9211 7.2829 10.6645 7.90219C10.408 8.52148 10.032 9.08418 9.55806 9.55817C9.08407 10.0322 8.52137 10.4081 7.90208 10.6647C7.28279 10.9212 6.61904 11.0532 5.94872 11.0532C5.27841 11.0532 4.61465 10.9212 3.99536 10.6647C3.37607 10.4081 2.81337 10.0322 2.33938 9.55817Z"
+            fill="#E65E1D"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="row mg-12" *ngIf="addToCartLastValue.lastItem && toastShow">
+    <div class="col-12">
+      <div class="card-rip">
+        <div class="cart-btn">
+          <svg
+            width="19"
+            height="13"
+            viewBox="0 0 19 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1 6L7 12L18 1"
+              stroke="#F36633"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <!-- <img [src]="'assets/img/home/check.png'" alt="Tick Icon"> -->
+          <img
+            [src]="addToCartLastValue.lastItem.previewURL" [srcDefault]="'assets/img/home/Product_Default.svg'" alt="Product" class="thumb" />
+          {{ "productPage.card.addToCart" | translate }}
+        </div>
+        <div class="selection">
+          {{ addToCartLastValue.lastItem.name }} ({{
+            addToCartLastValue.lastItem.quantity
+          }})
+        </div>
+        <div class="close-checkout">
+          <a href="javascript:void(0)">
+            <button routerLink="cart" (click)="moveToCart()">
+              {{ "productPage.toastSec.title" | translate }}
+              <span>({{ addToCartLastValue.quantity }} {{"productPage.items" | translate}})</span>
+            </button>
+            <img
+              [src]="'assets/img/home/close.png'"
+              alt="Close Icon"
+              class="close"
+              (click)="toastShow = false; cartEmpty()"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- "card" : {
+       "brand" : "Brand",
+       "unit"  : "Units/Package",
+       "limit" : "Limit",
+       "addToCart" : " Add to cart ",
+       "ordered" : "Ordered",
+       "download" : "Download",
+       "available" : "Available"
+       } -->
+  <div class="row">
+    <div
+      class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3"
+      *ngFor="
+        let item of products
+          | paginate
+            : {
+                itemsPerPage: this.pageRequest.take,
+                currentPage: this.pageRequest.page,
+                totalItems: totalItems
+              }
+      "
+    >
+      <div class="card product-card">
+        <div class="card-header">
+          <div class="tagged {{ themeVar }}" *ngIf="item.isNew">{{ "product.new" | translate }}</div>
+          <span
+            class="tag-title"
+            [ngClass]="
+              (productStatus.values | productStatusFilters: item.status)[0]
+                .class | lowercase
+            "
+          >
+            {{
+              (productStatus.values | productStatusFilters: item.status)[0]
+                .title
+            }}</span
+          >
+        </div>
+        <div class="item-pic" (click)="productDetails(item)">
+          <img [src]="item.previewURL" [srcDefault]="'assets/img/home/Product_Default.svg'" alt="Item" />
+        </div>
+        <div class="card-body item-details">
+          <span
+            class="product-title"
+            [title]="item.name"
+            (click)="productDetails(item)"
+            >{{ item.name }}</span
+          >
+          <span class="item-id" *ngIf="item.id"
+            >{{ "productPage.card.itemId" | translate }} :
+            {{ item.id }}</span
+          >
+          <span class="unit" *ngIf="item.unitsPerPackage"
+            >{{ "productPage.card.unit" | translate }} :
+            {{ item.unitsPerPackage }}</span
+          >
+
+          <span *ngIf="enableDTPDeductRule && enabledUsageLabelOnDashboard" class="limit"
+          >{{ "productPage.card.dtp" | translate }}: {{ item.orderedDtp | number }} | {{ "productPage.card.handCarry" | translate }}: {{ item.ordered | number }}</span>
+
+          <span class="limit"
+            >{{ "productPage.card.limit" | translate }}: {{ item.userLimit | number }} of
+            {{ item.limit | number }}</span>
+          
+        
+
+          <span class="limit" *ngIf="enableDisplayPediodLabel"
+            >{{ "productPage.card.period" | translate }}: {{
+              (periodTypes.values | periodLabelFilters: item.periodLabel)[0]
+                .title
+            }}</span
+          >
+          <span
+            *ngIf="!item.isDownloadable"
+            class="download-btn"
+          >
+            <img
+              [src]="'assets/img/home/download-document.png'"
+              alt="Download File"
+            />
+          </span>
+          <a
+            *ngIf="item.isDownloadable"
+            (click)="downloadFile(item.fileId)"
+            class="download-btn downloadable"
+          >
+            <img
+              [src]="'assets/img/home/download-document.png'"
+              alt="Download File"
+            />
+          </a>
+        </div>
+        <div class="card-footer add-to-cart">
+          <button
+            class="btns"
+            *ngIf="!item.addedToCart"
+            [disabled]="item.status !== 1"
+            (click)="
+              addTocart(item, item.id, item.increment);
+            "
+          >
+            {{ "productPage.card.addToCart" | translate }}
+          </button>
+          <div class="expanded quantity" *ngIf="item.addedToCart" ngbDropdown>
+            <input
+              type="text"
+              name="cart"
+              [disabled]="true"
+              [value]="item.addedToCart ? item.quantity : item.increment"
+              class="add-to-cart-control"
+              (change)="updateCart(item, item.id, $event)"
+            />
+            <div class="dropdown-selection" ngbDropdownToggle>
+              <img [src]="'assets/img/home/drop-polygon.png'" alt="Drop Icon" />
+            </div>
+            <div
+              ngbDropdownMenu
+              aria-labelledby="dropdownBasic1"
+              class="item-menu"
+            >
+              <button
+                ngbDropdownItem
+                *ngFor="let val of itemsMenus | quantitySelector: item"
+                (click)="updateCart(item, item.id, val, true)"
+                class="item-num"
+              >
+                <span>{{ val }}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="products.length === 0 && !loading">
+      <span class="no-item">{{ "productPage.noItems" | translate }}</span>
+    </div>
+  </div>
+  <pagination-controls
+    (pageChange)="getAllItems((page = $event))"
+    previousLabel=""
+    nextLabel=""
+    *ngIf="products.length > 0 && !loading"
+  >
+  </pagination-controls>
+</div>

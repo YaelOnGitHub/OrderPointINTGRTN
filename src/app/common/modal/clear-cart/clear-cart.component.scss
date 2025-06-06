@@ -1,0 +1,43 @@
+.modal-body {
+    .que_title{
+        font-family: "Lato", sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 19px;
+        color: #DB1A1A;
+    }
+    .que_desc{
+        text-align: left!important;
+    }
+    .desc, .que_desc{
+        font-family: "Lato", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        color: #4a4a4a;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .order-confirmation {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 24px;
+        text-align: center;
+        color: #4a4a4a;
+        span{
+            display: block;
+            color: #F36633;
+            font-size: 16px;
+        }
+    }
+}
+
+.back_product{
+    min-width: 188px;
+}

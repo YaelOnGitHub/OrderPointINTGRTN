@@ -1,0 +1,10 @@
+<section class="home-section">
+    <div class="d-flex h-full">
+        <!-- <app-sidebar></app-sidebar> -->
+        <app-sidebar-filter></app-sidebar-filter>
+        <div class="main flex-1 min-h-[calc(100vh-48px)]">
+            <app-product-list *ngIf="!(showAiExpert$ | async)"></app-product-list>
+            <app-ai-expert *ngIf="showAiExpert$ | async"></app-ai-expert>
+        </div>
+    </div>
+</section>

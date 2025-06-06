@@ -1,0 +1,105 @@
+<div *ngIf="!productModelHide">
+    <div class="modal-header">
+        <div class="tagged {{ themeVar }}" *ngIf="productDetails.isNew">{{'product.new' | translate}}</div>
+        <span class="close-icon" aria-label="Close" (click)="onCloseModal()" data-toggle="tooltip" data-placement="top"
+            title="Close">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                    fill="#555555" />
+            </svg>
+        </span>
+    </div>
+
+
+    <div class="modal-body" *ngIf="!prevImgEnlarged">
+        <div class="item-details">
+            <div class="item-pic">
+                <a (click)="prevImgEnlarged=true" target="_blank"><img [src]="productDetails.previewURL" [srcDefault]="'assets/img/home/Product_Default.svg'" alt="Item" /></a>
+                <div class="ids">{{ 'productPage.card.itemId' | translate }}:<span> {{ productDetails.id }} </span></div>
+            </div>
+            <div class="details">
+                <div class="title" [title]="productDetails.name">{{ productDetails.name }}</div>
+                <div class="brand" *ngIf="productDetails.brand">{{ 'productPage.card.brand' | translate }}: <span>{{ productDetails.brand }}</span></div>
+
+                <div>
+                    <div class="unit-limit mg-40" *ngIf="productDetails.unitsPerPackage"><span>{{ 'productPage.card.unit' | translate }}:</span> {{productDetails.unitsPerPackage}}</div>
+                    <div class="unit-limit"><span>{{ 'productPage.card.limit' | translate }}:</span> {{ productDetails.userLimit | number }} of {{
+                        productDetails.limit }}</div>
+                    <div class="unit-limit"><span>{{ 'productPage.card.ordered' | translate }}:</span> {{ productDetails.ordered | number}}</div>
+
+                    <!-- Commenting this Div beacuse it is not required anymore. As we are hiding available quanitiy of items from UI.   -->
+                    <!-- <div class="status available">{{ 'productPage.card.available' | translate }}<span *ngIf="!this.isSalesRep">: {{ productDetails.available | number }}</span></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+
+    <div *ngIf="!prevImgEnlarged" class="agGrid">
+        <div class="agGridTitle">Product History</div>        
+        <ag-grid-angular  
+        class="ag-theme-balham" 
+        [columnDefs]="columnDefs" 
+        [rowData]="rowData"
+        (gridReady)="onGridReady($event)">
+        </ag-grid-angular>
+    </div>
+
+    <div class="modal-body" *ngIf="prevImgEnlarged">
+        <div class="item-pic-enlarged">
+            <img (click)="prevImgZoomed=!prevImgZoomed" [ngClass]="{'zoomed':prevImgZoomed}" [src]="productDetails.previewURL" [srcDefault]="'assets/img/home/Product_Default.svg'" alt="Item" />
+        </div>
+    </div>
+
+    <div class="modal-footer" *ngIf="prevImgEnlarged">
+        <button class="btn btn-ti-primary" 
+            (click)="prevImgEnlarged=false">
+            {{ 'productPage.card.back' | translate }}
+        </button>
+    </div>
+    <div class="modal-footer" *ngIf="!prevImgEnlarged">
+        <span *ngIf="!productDetails.isDownloadable" class="download-btn">
+            <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M29.9583 28.7852C29.7045 29.2382 29.5083 29.74 29.1822 30.1334C28.6869 30.7306 27.9854 30.9975 27.2081 30.998C20.9268 31.0016 14.6458 31.0006 8.36521 30.9951C6.82826 30.9922 5.66262 29.8171 5.62855 28.2858C5.61327 27.6408 5.61621 26.9953 5.62855 26.3498C5.64089 25.7561 5.97166 25.4127 6.50983 25.3974C7.08031 25.3803 7.44986 25.7296 7.46631 26.3397C7.48276 26.9258 7.45984 27.513 7.47277 28.0996C7.48805 28.8064 7.81294 29.1469 8.5209 29.1474C14.704 29.1533 20.8874 29.1533 27.0712 29.1474C27.7463 29.1474 28.09 28.8064 28.0906 28.1326C28.0972 22.2855 28.0972 16.4387 28.0906 10.592C28.0801 10.5109 28.0632 10.4307 28.04 10.3523H25.2658C24.6412 10.3523 24.0173 10.3605 23.3934 10.3523C21.7953 10.3293 20.6273 9.16546 20.6132 7.56518C20.5997 6.02203 20.6132 4.47829 20.6132 2.84327H19.9669C16.2417 2.84327 12.516 2.84327 8.78999 2.84327C7.74009 2.84327 7.47688 3.10772 7.47512 4.15612C7.47512 4.93829 7.48099 5.72047 7.47218 6.50265C7.46454 7.17409 7.12966 7.5375 6.54567 7.53396C5.96167 7.53043 5.63619 7.1682 5.63031 6.49204C5.62326 5.63212 5.62502 4.77161 5.63031 3.9111C5.63325 2.47456 6.28892 1.56457 7.64315 1.09338C7.7116 1.06116 7.7764 1.02167 7.83644 0.975586L21.7653 0.975586C21.9486 1.11518 22.1519 1.23533 22.3135 1.39671C24.8645 3.95174 27.4128 6.51011 29.9583 9.07181V28.7852ZM26.4996 8.49637L22.4574 4.40232C22.4574 5.40359 22.4404 6.47555 22.4645 7.54633C22.4774 8.11824 22.8599 8.47929 23.4492 8.48871C24.502 8.51109 25.5519 8.49637 26.4996 8.49637Z"
+                    fill="#4A4A4A" />
+                <path
+                    d="M2.81642 16.0078V13.9622C2.81642 12.4957 2.81113 11.0297 2.81642 9.56309C2.81994 8.8245 3.11899 8.50292 3.82812 8.50292C5.64159 8.49349 7.45526 8.49349 9.26912 8.50292C9.97708 8.50645 10.2773 8.83039 10.2791 9.56781C10.2838 11.4838 10.2791 13.3998 10.2791 15.3157C10.2791 15.526 10.2791 15.7369 10.2791 16.0102C10.9136 16.0102 11.4935 16.0196 12.0728 16.0066C12.5163 15.9972 12.8136 16.1927 12.9987 16.5868C13.1838 16.9808 13.1332 17.3295 12.8436 17.667C11.037 19.7708 9.2421 21.8847 7.43313 23.9862C6.88439 24.6235 6.19934 24.6064 5.63474 23.9503C3.86474 21.8928 2.09906 19.8313 0.337679 17.7659C0.0368704 17.4125 -0.110009 17.0356 0.0956221 16.5826C0.301253 16.1297 0.664339 15.9842 1.1414 16.0037C1.66841 16.0243 2.19482 16.0078 2.81642 16.0078ZM10.1016 17.8926C9.88426 17.8767 9.79025 17.8655 9.69566 17.8631C8.64988 17.839 8.43426 17.6222 8.43309 16.5821C8.43074 14.8049 8.43074 13.0281 8.43309 11.2517V10.3883H4.66298V16.39C4.66298 17.6858 4.54548 17.8072 3.23825 17.866C3.19008 17.866 3.14425 17.9032 3.0432 17.9456L6.55185 22.1056L10.1016 17.8926Z"
+                    fill="#4A4A4A" />
+            </svg>
+            {{ 'productPage.card.download' | translate }}
+        </span>
+        <a *ngIf="productDetails.isDownloadable" (click)="downloadFile(productDetails.fileId)" class="download-btn downloadable">
+            <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M29.9583 28.7852C29.7045 29.2382 29.5083 29.74 29.1822 30.1334C28.6869 30.7306 27.9854 30.9975 27.2081 30.998C20.9268 31.0016 14.6458 31.0006 8.36521 30.9951C6.82826 30.9922 5.66262 29.8171 5.62855 28.2858C5.61327 27.6408 5.61621 26.9953 5.62855 26.3498C5.64089 25.7561 5.97166 25.4127 6.50983 25.3974C7.08031 25.3803 7.44986 25.7296 7.46631 26.3397C7.48276 26.9258 7.45984 27.513 7.47277 28.0996C7.48805 28.8064 7.81294 29.1469 8.5209 29.1474C14.704 29.1533 20.8874 29.1533 27.0712 29.1474C27.7463 29.1474 28.09 28.8064 28.0906 28.1326C28.0972 22.2855 28.0972 16.4387 28.0906 10.592C28.0801 10.5109 28.0632 10.4307 28.04 10.3523H25.2658C24.6412 10.3523 24.0173 10.3605 23.3934 10.3523C21.7953 10.3293 20.6273 9.16546 20.6132 7.56518C20.5997 6.02203 20.6132 4.47829 20.6132 2.84327H19.9669C16.2417 2.84327 12.516 2.84327 8.78999 2.84327C7.74009 2.84327 7.47688 3.10772 7.47512 4.15612C7.47512 4.93829 7.48099 5.72047 7.47218 6.50265C7.46454 7.17409 7.12966 7.5375 6.54567 7.53396C5.96167 7.53043 5.63619 7.1682 5.63031 6.49204C5.62326 5.63212 5.62502 4.77161 5.63031 3.9111C5.63325 2.47456 6.28892 1.56457 7.64315 1.09338C7.7116 1.06116 7.7764 1.02167 7.83644 0.975586L21.7653 0.975586C21.9486 1.11518 22.1519 1.23533 22.3135 1.39671C24.8645 3.95174 27.4128 6.51011 29.9583 9.07181V28.7852ZM26.4996 8.49637L22.4574 4.40232C22.4574 5.40359 22.4404 6.47555 22.4645 7.54633C22.4774 8.11824 22.8599 8.47929 23.4492 8.48871C24.502 8.51109 25.5519 8.49637 26.4996 8.49637Z"
+                    fill="#4A4A4A" />
+                <path
+                    d="M2.81642 16.0078V13.9622C2.81642 12.4957 2.81113 11.0297 2.81642 9.56309C2.81994 8.8245 3.11899 8.50292 3.82812 8.50292C5.64159 8.49349 7.45526 8.49349 9.26912 8.50292C9.97708 8.50645 10.2773 8.83039 10.2791 9.56781C10.2838 11.4838 10.2791 13.3998 10.2791 15.3157C10.2791 15.526 10.2791 15.7369 10.2791 16.0102C10.9136 16.0102 11.4935 16.0196 12.0728 16.0066C12.5163 15.9972 12.8136 16.1927 12.9987 16.5868C13.1838 16.9808 13.1332 17.3295 12.8436 17.667C11.037 19.7708 9.2421 21.8847 7.43313 23.9862C6.88439 24.6235 6.19934 24.6064 5.63474 23.9503C3.86474 21.8928 2.09906 19.8313 0.337679 17.7659C0.0368704 17.4125 -0.110009 17.0356 0.0956221 16.5826C0.301253 16.1297 0.664339 15.9842 1.1414 16.0037C1.66841 16.0243 2.19482 16.0078 2.81642 16.0078ZM10.1016 17.8926C9.88426 17.8767 9.79025 17.8655 9.69566 17.8631C8.64988 17.839 8.43426 17.6222 8.43309 16.5821C8.43074 14.8049 8.43074 13.0281 8.43309 11.2517V10.3883H4.66298V16.39C4.66298 17.6858 4.54548 17.8072 3.23825 17.866C3.19008 17.866 3.14425 17.9032 3.0432 17.9456L6.55185 22.1056L10.1016 17.8926Z"
+                    fill="#4A4A4A" />
+            </svg>
+            {{ 'productPage.card.download' | translate }}
+        </a>
+
+        <button class="btn btn-ti-primary addToCart" *ngIf="!addToCartBTN" [disabled]="productDetails.status !== 1"
+            (click)="addTocart(productDetails, productDetails?.id, productDetails.increment); addToCartBTN = true">
+            {{ 'productPage.card.addToCart' | translate }}
+        </button>
+        <div class="expanded quantity" *ngIf="addToCartBTN" ngbDropdown>
+            <input type="text" name="cart"
+            [disabled]="true"
+                [value]="addToCartBTN ? (productDetails.quantity ? productDetails.quantity : productDetails.increment) : productDetails.increment"
+                class="add-to-cart-control" (change)="updateCart(productDetails, productDetails.id,$event)">
+            <div class="dropdown-selection" ngbDropdownToggle>
+                <img [src]="'assets/img/home/drop-polygon.png'" alt="Drop Icon">
+            </div>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="item-menu">                
+                    <button ngbDropdownItem *ngFor="let val of (itemsMenus | quantitySelector :  productDetails  );" (click)="updateCart(productDetails, productDetails.id, val , true) " class="item-num">
+                        <span>{{val}}</span>
+                    </button>    
+                </div>
+        </div>
+    </div>
+
+</div>
