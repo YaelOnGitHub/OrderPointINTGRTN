@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
+    "build:sit": "ng build --configuration=sit",
     "start:sit": "ng serve --configuration=sit"
   },
   "private": true,
