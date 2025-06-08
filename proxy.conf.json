@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://orderpointapi.qpharmasit.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+} 

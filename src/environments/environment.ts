@@ -4,9 +4,8 @@
 
 export const environment = {
   production: false,
-  baseApiEndPoint: 'http://localhost:44371/' ,
-
-  baseAuthLink : 'http://localhost:44371/',
+  baseApiEndPoint: '/api/',
+  baseAuthLink: '/api/',
   auth: {
     loginEndPoint: 'auth/login',
     logoutEndPoint: 'auth/logout',

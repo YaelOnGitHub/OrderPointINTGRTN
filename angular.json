@@ -159,15 +159,16 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json",
+            "browserTarget": "orderpoint-v2-ui:build"
+          },
           "configurations": {
             "production": {
-              "browserTarget": "ti-frontend:build:production"
+              "browserTarget": "orderpoint-v2-ui:build:production"
             },
             "development": {
-              "browserTarget": "ti-frontend:build:development"
-            },
-            "sit": {
-              "browserTarget": "ti-frontend:build:sit"
+              "browserTarget": "orderpoint-v2-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
