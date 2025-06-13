@@ -10,6 +10,5 @@ export class SharedService {
   userName = new BehaviorSubject<string>('Guest');
   isTyping = new BehaviorSubject<boolean>(false);
 
-  
   constructor() { }
 }
